@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+    rabbitmq:
+        image: rabbitmq:management
+        ports:
+            - 5672:5672
+            - 9090:15672
+        environment: 
+            RABBITMQ_DEFAULT_USER: admin
+            RABBITMQ_DEFAULT_PASS: admin
+        restart: unless-stopped
+    
+    zipkin:
+        image: openzipkin/zipkin
+        ports:
+            - 9411:9411
+    
+    # mysql:
+    #     image: mysql:5.7.29
+    #     ports: 
+    #         - 3306:3306
+    #     environment: 
+    #         MYSQL_ROOT_PASSWORD: root
+    #         MYSQL_DATABASE: sph
+    #         MYSQL_USER: admin
+    #         MYSQL_PASSWORD: 12345
+
