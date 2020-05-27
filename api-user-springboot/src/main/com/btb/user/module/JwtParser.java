@@ -18,7 +18,7 @@ public class JwtParser {
         // header 에 token 포함 여부 및 올바른 token 인지
         String authHeader = request.getHeader(env.getProperty("authorization.token.header.name"));
         String prefix = env.getProperty("authorization.token.header.prefix");
-        if(authHeader == null || !authHeader.startsWith(prefix)) throw new UserNotFoundException("");
+        if(authHeader == null || !authHeader.startsWith(prefix)) throw new UserNotFoundException("JWT Header not found");
 
         String token = authHeader.replace(env.getProperty("authorization.token.header.prefix"),"");
         String email = Jwts.parser()

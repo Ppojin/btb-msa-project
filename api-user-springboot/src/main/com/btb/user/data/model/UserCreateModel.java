@@ -10,17 +10,17 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCreateModel {
-    @Email
+    @Email(message = "Must be insert Email format.")
     private String email;
-    @Size(min = 2)
+    @Size(min = 2, max = 12, message = "length must be 2~12")
     private String name;
-    @Size(min = 8)
+    @Size(min = 8, max = 16, message = "length must be 8~16")
     private String password;
-    @Size(min = 4)
+    @Size(min = 4, max = 16, message = "length must be 4~16")
     private String groupName;
 
-    @DecimalMax("2")
-    @DecimalMin("1")
+    @DecimalMax(value = "3", message = "value must be 1 or 2 or 3")
+    @DecimalMin(value = "1", message = "value must be 1 or 2 or 3")
     private Integer gender;
     private String phone;
     private String city;
