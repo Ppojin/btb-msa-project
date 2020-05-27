@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,14 +16,18 @@ import javax.persistence.Id;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @DynamicUpdate @DynamicInsert
-public class QABank {
+public class QuestionsEntity {
     @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String qaBankPK;
-
+    private String questionPK;
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String contents;
+    @Column(nullable = false)
     private String gitUlr;
-
+    @Column(nullable = false, columnDefinition = "varchar(255) DEFAULT 'default")
+    private String groupName;
+    @Column(nullable = true)
     private Integer category;
 }
