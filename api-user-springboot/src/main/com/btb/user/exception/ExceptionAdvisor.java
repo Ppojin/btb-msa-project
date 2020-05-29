@@ -8,23 +8,21 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @ControllerAdvice
 @RestController
 public class ExceptionAdvisor {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map> processValicationError(MethodArgumentNotValidException exception){
+    public ResponseEntity<Map> processValidationError(MethodArgumentNotValidException exception){
         BindingResult bindingResult = exception.getBindingResult();
-        List<String> list = new ArrayList<>();
+        Map<String, String> errorMap = new HashMap<>();
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
-            list.add(String.format("%s is %s", fieldError.getField(), fieldError.getDefaultMessage()));
+            errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        Map<String, List> result = new HashMap<>();
-        result.put("messages", list);
+        Map<String, Map> result = new HashMap<>();
+        result.put("messages", errorMap);
         return ResponseEntity.badRequest().body(result);
 //        return builder.toString();
     }

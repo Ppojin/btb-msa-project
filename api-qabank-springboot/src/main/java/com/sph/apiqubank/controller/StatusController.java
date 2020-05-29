@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("")
 public class StatusController {
+    private Environment env;
     @Autowired
-    Environment env;
+    public StatusController(Environment env) {
+        this.env = env;
+    }
 
     @GetMapping("status")
     public String status(){

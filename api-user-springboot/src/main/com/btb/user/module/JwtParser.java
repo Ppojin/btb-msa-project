@@ -7,25 +7,26 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 public class JwtParser {
-    Environment env;
-    public JwtParser(Environment env){
-        this.env = env;
-    }
-
-    public String getCurrentUserEmail(HttpServletRequest request){
-        // header 에 token 포함 여부 및 올바른 token 인지
-        String authHeader = request.getHeader(env.getProperty("authorization.token.header.name"));
-        String prefix = env.getProperty("authorization.token.header.prefix");
-        if(authHeader == null || !authHeader.startsWith(prefix)) throw new UserNotFoundException("JWT Header not found");
-
-        String token = authHeader.replace(env.getProperty("authorization.token.header.prefix"),"");
-        String email = Jwts.parser()
-                .setSigningKey(env.getProperty("token.secret"))
-                .parseClaimsJws(token.trim())
-                .getBody()
-                .getSubject();
-        return email;
-    }
+//    Environment env;
+//    public JwtParser(Environment env){
+//        this.env = env;
+//    }
+//
+//    public String getCurrentUserEmail(HttpServletRequest request){
+//        // header 에 token 포함 여부 및 올바른 token 인지
+//        String authHeader = request.getHeader(env.getProperty("authorization.token.header.name"));
+//        String prefix = env.getProperty("authorization.token.header.prefix");
+//        if(authHeader == null || !authHeader.startsWith(prefix)) throw new UserNotFoundException("JWT Header not found");
+//
+//        String token = authHeader.replace(Objects.requireNonNull(env.getProperty("authorization.token.header.prefix")),"");
+//        String email = Jwts.parser()
+//                .setSigningKey(env.getProperty("token.secret"))
+//                .parseClaimsJws(token.trim())
+//                .getBody()
+//                .getSubject();
+//        return email;
+//    }
 }

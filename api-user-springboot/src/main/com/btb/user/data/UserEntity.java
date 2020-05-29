@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Data
 @AllArgsConstructor
 @Entity
-@Table(name = "customers")
+@Table(name = "CUSTOMERS")
 @NoArgsConstructor
 @DynamicInsert
 @DynamicUpdate

@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private UserService userService;
@@ -50,8 +52,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     ) throws IOException, ServletException {
         String email = ((User)authResult.getPrincipal()).getUsername();
         UserDto userDto = userService.getUSerDetailsByEmail(email);
+        Map<String, Object> map = new HashMap<>();
+        map.put("group", userDto.getGroupName());
         String token = Jwts.builder()
                 .setSubject(userDto.getEmail())
+                .setHeader(map)
 //                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(env.getProperty("token.expiration_time"))))
                 .setExpiration(new Date(System.currentTimeMillis() + (3600*1000)))
                 .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))

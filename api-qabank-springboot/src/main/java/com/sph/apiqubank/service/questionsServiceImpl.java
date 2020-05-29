@@ -1,38 +1,80 @@
 package com.sph.apiqubank.service;
 
-import com.sph.apiqubank.entity.QuestionsEntity;
-import com.sph.apiqubank.entity.QuestionsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sph.apiqubank.entity.CategoryRepository;
+import com.sph.apiqubank.entity.QuestionEntity;
+import com.sph.apiqubank.entity.QuestionRepository;
+import com.sph.apiqubank.entity.dto.QuestionDto;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class questionsServiceImpl implements questionsService{
-    QuestionsRepository repository;
+    QuestionRepository questionRepository;
+    CategoryRepository categoryRepository;
 
-    @Autowired
-    public questionsServiceImpl(QuestionsRepository repository) {
-        this.repository = repository;
+    private List<QuestionDto> getQuestionDtos(List<QuestionEntity> questionEntityList) {
+        Type questionDtoListType = new TypeToken<List<QuestionDto>>(){}.getType();
+        List<QuestionDto> questionDtoList = new ModelMapper().map(questionEntityList, questionDtoListType);
+        questionDtoList.forEach(questionDto -> {
+            Map<Long, String> categoryJson = new HashMap<>();
+            for (Long categoryPK : questionDto.getCategoryPK()){
+                categoryJson.put(categoryPK, categoryRepository.findByCategoryPK(categoryPK).getCategoryName());
+            }
+            questionDto.setCategoryJson(categoryJson);
+        });
+        return questionDtoList;
     }
 
     @Override
-    public QuestionsEntity createQuestion(QuestionsEntity questionDetails) {
-        return repository.save(questionDetails);
+    public QuestionDto createQuestion(QuestionDto question) {
+        ModelMapper modelMapper = new ModelMapper();
+        QuestionEntity questionEntity = modelMapper.map(question, QuestionEntity.class);
+        QuestionEntity questionEntityResult = questionRepository.save(questionEntity);
+        QuestionDto questionDto = modelMapper.map(questionEntityResult, QuestionDto.class);
+        Map<Long, String> categoryJson = new HashMap<>();
+        for (Long categoryPK : questionDto.getCategoryPK()){
+            categoryJson.put(categoryPK, categoryRepository.findByCategoryPK(categoryPK).getCategoryName());
+        }
+        questionDto.setCategoryJson(categoryJson);
+        return questionDto;
     }
 
     @Override
-    public QuestionsEntity readQuestion(String questionPK) {
-        return repository.findByQuestionPK(questionPK);
+    public QuestionDto readQuestion(String questionPK) {
+        QuestionEntity questionEntity = questionRepository.findByQuestionPK(questionPK);
+        QuestionDto questionDto = new ModelMapper().map(questionEntity, QuestionDto.class);
+        Map<Long, String> categoryJson = new HashMap<>();
+        for (Long categoryPK : questionDto.getCategoryPK()){
+            categoryJson.put(categoryPK, categoryRepository.findByCategoryPK(categoryPK).getCategoryName());
+        }
+        questionDto.setCategoryJson(categoryJson);
+        return questionDto;
     }
 
     @Override
-    public List<QuestionsEntity> listAllQuestion(String groupName) {
-//        List<QuestionsEntity> questionList = repository.findAllByGroupName(groupName);
+    public List<QuestionDto> listAllQuestion(String groupName) {
+        List<QuestionEntity> questionEntityList = questionRepository.findAllByGroupName(groupName);
+        return getQuestionDtos(questionEntityList);
+    }
+
+    @Override
+    public List<QuestionDto> listAll() {
+        List<QuestionEntity> questionEntityList = questionRepository.findAll();
+        return getQuestionDtos(questionEntityList);
+    }
+
+//    @Override
+//    public List<QuestionDto> listAllQuestionByGroupName(String groupName) {
 //        ModelMapper modelMapper = new ModelMapper();
-//        Type listType = new TypeToken<List<QuestionDto>>(){}.getType();
-//        List<QuestionDto> result = modelMapper.map(questionList, listType);
-//        return questionList;
-        return repository.findAllByGroupName(groupName);
-    }
+//        List<QuestionEntity> questionEntityList = questionRepository.findAllByGroupName(groupName);
+//        Type questionDtoListType = new TypeToken<List<QuestionDto>>(){}.getType();
+//        List<QuestionDto> questionDtoList = modelMapper.map(questionEntityList, questionDtoListType);
+//        return questionDtoList;
+//    }
 }

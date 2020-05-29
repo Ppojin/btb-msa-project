@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Enumeration;
 
 @Api(tags = {"1. User"})
 @RestController
@@ -49,13 +50,20 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userResponseModel);
     }
 
-    @ApiOperation(value = "현재 계정 정보", notes="현재 계정 정보 조회")
-    @GetMapping(
-            produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}
-    )
-    public ResponseEntity<UserResponseModel> getThisUser(HttpServletRequest request){
-        UserDto userDto = userService.getUSerDetailsByEmail(new JwtParser(env).getCurrentUserEmail(request));
-        UserResponseModel userResponseModel = new ModelMapper().map(userDto, UserResponseModel.class);
-        return ResponseEntity.status(HttpStatus.OK).body(userResponseModel);
-    }
+//    @ApiOperation(value = "계정 확인")
+
+//    @ApiOperation(value = "현재 계정 정보", notes="현재 계정 정보 조회")
+//    @GetMapping
+//    public ResponseEntity<UserResponseModel> getThisUser(HttpServletRequest request){
+//        Enumeration<String> ems = request.getHeaderNames();
+//        while (ems.hasMoreElements()) {
+//            String name = ems.nextElement();
+//            System.out.println(name + "/" + request.getHeader(name));
+//        }
+//        System.out.println("=========");
+//
+//        UserDto userDto = userService.getUSerDetailsByEmail(new JwtParser(env).getCurrentUserEmail(request));
+//        UserResponseModel userResponseModel = new ModelMapper().map(userDto, UserResponseModel.class);
+//        return ResponseEntity.status(HttpStatus.OK).body(userResponseModel);
+//    }
 }

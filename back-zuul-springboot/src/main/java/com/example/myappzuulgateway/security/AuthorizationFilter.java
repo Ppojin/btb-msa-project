@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AuthorizationFilter extends BasicAuthenticationFilter {
     Environment env;
@@ -45,6 +46,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 
         // 사용자 요청 페이지로 이동
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+//        request.("token", token);
         chain.doFilter(request, response);
     }
 
@@ -54,7 +56,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
         if(authHeader == null){// 받은 토큰이 없거나
             return null;
         }
-        String token = authHeader.replace(env.getProperty("authorization.token.header.prefix"),"");
+        String token = authHeader.replace(Objects.requireNonNull(env.getProperty("authorization.token.header.prefix")),"");
         String userId = Jwts.parser()
                 .setSigningKey(env.getProperty("token.secret"))
                 .parseClaimsJws(token.trim())
