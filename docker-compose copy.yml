@@ -1,0 +1,101 @@
+version: '3.1'
+
+services:    
+    # api_user:
+    #     build: ./api-user-springboot
+    #     ports: 
+    #         - 10000:10000
+    #     networks: 
+    #         - "msa"
+    #     restart: unless-stopped
+    #     depends_on: 
+    #         - zuul
+
+    # api_qabank:
+    #     build: ./api-qabank-springboot
+    #     ports: 
+    #         - 20000:20000
+    #     networks: 
+    #         - "msa"
+    #     restart: unless-stopped
+    #     depends_on: 
+    #         - zuul
+
+    # api_exam:
+    #     build: ./api-exam-springboot
+    #     ports: 
+    #         - 30000:30000
+    #     networks: 
+    #         - "msa"
+    #     restart: unless-stopped
+    #     depends_on: 
+    #         - zuul
+
+    # zuul:
+    #     build: ./back-zuul-springboot
+    #     ports: 
+    #         - 8011:8011
+    #     networks: 
+    #         - "msa"
+    #     restart: unless-stopped
+    #     depends_on: 
+    #         - eureka
+
+    # eureka:
+    #     build: ./back-eureka-springboot
+    #     ports: 
+    #         - 8010:8010
+    #     networks: 
+    #         - "msa"
+    #     restart: unless-stopped
+    #     depends_on: 
+    #         - config
+    
+    # config:
+    #     build: ./back-config-springboot
+    #     ports: 
+    #         - 8012:8012
+    #     networks: 
+    #         - "msa"
+    #     restart: unless-stopped
+    #     depends_on: 
+    #         - rabbitmq
+        
+    rabbitmq:
+        image: rabbitmq:management
+        ports:
+            - 5672:5672
+            - 9090:15672
+        environment: 
+            RABBITMQ_DEFAULT_USER: admin
+            RABBITMQ_DEFAULT_PASS: admin
+        restart: unless-stopped
+        networks: 
+            - "msa"
+        # depends_on: 
+        #     - mysql
+    
+    zipkin:
+        image: openzipkin/zipkin
+        ports:
+            - 9411:9411
+        networks: 
+            - "msa"
+        restart: unless-stopped
+        # depends_on: 
+        #     - mysql
+    
+    # mysql:
+    #     image: mysql:5.7.29
+    #     ports: 
+    #         - 3306:3306
+    #     environment: 
+    #         MYSQL_ROOT_PASSWORD: root
+    #         MYSQL_DATABASE: sph
+    #         MYSQL_USER: admin
+    #         MYSQL_PASSWORD: 12345
+    #     networks: 
+    #         - "msa"
+    #     restart: unless-stopped
+networks: 
+    msa:

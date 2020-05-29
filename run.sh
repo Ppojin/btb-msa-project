@@ -57,6 +57,7 @@ docker run -d --name zuul -p 8011:8011 \
 -e "spring.rabbitmq.host=${rabbitmq}" \
 -e "spring.cloud.config.uri=http://${config}:8012" \
 -e "eureka.client.service-url.defaultZone=http://${eureka}:8010/eureka" \
+-e "spring.cloud.config.name=docker" \
 --network my-net \
 zuul
 
@@ -70,6 +71,7 @@ docker run --name user -d \
 -e "spring.cloud.config.uri=http://${config}:8012" \
 -e "eureka.client.service-url.defaultZone=http://${eureka}:8010/eureka" \
 -e "server.port=10000" \
+-e "spring.cloud.config.name=docker" \
 --network my-net \
 user
 
@@ -83,6 +85,7 @@ docker run --name qabank -d \
 -e "spring.cloud.config.uri=http://${config}:8012" \
 -e "eureka.client.service-url.defaultZone=http://${eureka}:8010/eureka" \
 -e "server.port=20000" \
+-e "spring.cloud.config.name=docker" \
 --network my-net \
 qabank
 
@@ -96,6 +99,7 @@ docker run --name exam -d \
 -e "spring.cloud.config.uri=http://${config}:8012" \
 -e "eureka.client.service-url.defaultZone=http://${eureka}:8010/eureka" \
 -e "server.port=30000" \
+-e "spring.cloud.config.name=docker" \
 --network my-net \
 exam
 
