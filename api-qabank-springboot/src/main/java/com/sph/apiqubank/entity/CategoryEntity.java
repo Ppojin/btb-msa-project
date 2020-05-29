@@ -1,9 +1,7 @@
 package com.sph.apiqubank.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -13,6 +11,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @DynamicUpdate @DynamicInsert
+@Getter @Setter
 @Table(name = "CATEGORY")
 public class CategoryEntity {
     @Id

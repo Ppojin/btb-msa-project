@@ -1,8 +1,6 @@
 package com.sph.apiqubank.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
@@ -14,6 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @DynamicUpdate @DynamicInsert
+@Getter @Setter
 @Table(name = "QUESTION")
 public class QuestionEntity {
     @Id @GeneratedValue(generator="system-uuid")
