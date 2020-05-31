@@ -28,3 +28,8 @@ cd api-exam-springboot
 mvn clean
 mvn compile
 mvn package
+
+cd api-result-springboot
+mvn clean
+mvn compile
+mvn package

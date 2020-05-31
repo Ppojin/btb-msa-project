@@ -45,7 +45,7 @@ public class UserEntity implements UserDetails {
     private String city;
 
     @Column(nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private String signinDate;
+    private String createDate;
     @Column(nullable = false)
     private String encryptedPassword;
 

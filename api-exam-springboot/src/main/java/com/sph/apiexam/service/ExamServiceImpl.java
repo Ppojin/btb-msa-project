@@ -28,15 +28,18 @@ public class ExamServiceImpl implements ExamService{
         this.qaBankServiceClient = qaBankServiceClient;
     }
 
-    private ExamDto examEntityToExamDto(ExamDto examDto){
+    private ExamDto examEntityToExamDto(ExamDto examDto) throws RuntimeException{
         List<QuestionResponseModel> questionResponseModelList = new ArrayList<>();
         List<UserResponseModel> userResponseModelList = new ArrayList<>();
         examDto.getCustomerPK().forEach(customerPK -> {
             UserResponseModel user = userServiceClient.getUser(customerPK).getBody();
+            if (user == null) throw new RuntimeException(String.format("user <%s> not existed", user));
             userResponseModelList.add(user);
         });
+
         examDto.getQuestionPK().forEach(questionPK -> {
             QuestionResponseModel question = qaBankServiceClient.readQuestion(questionPK).getBody();
+            if (question == null) throw new RuntimeException(String.format("question <%s> not existed", question));
             questionResponseModelList.add(question);
         });
         examDto.setCustomerList(userResponseModelList);
@@ -48,9 +51,16 @@ public class ExamServiceImpl implements ExamService{
     public ExamDto createExam(ExamDto examDto) {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setAmbiguityIgnored(true);
-        ExamEntity examEntity = modelMapper.map(examDto, ExamEntity.class);
-        ExamDto createdExamDto = modelMapper.map(examRepository.save(examEntity), ExamDto.class);
-        return examEntityToExamDto(createdExamDto);
+        ExamDto loadedExamDto = examEntityToExamDto(examDto);
+//        loadedExamDto.setExamPK(
+//                examRepository.save(
+//                        modelMapper.map(loadedExamDto, ExamEntity.class)
+//                ).getExamPK()
+//        );
+        ExamEntity examEntity = modelMapper.map(loadedExamDto, ExamEntity.class);
+        ExamEntity savedExamEntity = examRepository.save(examEntity);
+        loadedExamDto.setExamPK(savedExamEntity.getExamPK());
+        return loadedExamDto;
     }
 
     @Override
