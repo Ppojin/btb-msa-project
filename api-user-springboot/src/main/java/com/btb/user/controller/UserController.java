@@ -27,7 +27,6 @@ import java.util.Enumeration;
 
 @Api(tags = {"1. User"})
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/v1/users")
 @Slf4j
 public class UserController {

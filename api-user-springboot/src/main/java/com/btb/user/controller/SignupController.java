@@ -21,7 +21,6 @@ import javax.validation.Valid;
 @Api(tags = {"2. Signup"})
 @RestController
 @RequestMapping("/signup")
-@CrossOrigin(origins = "*")
 @Slf4j
 public class SignupController {
     private Environment env;
@@ -34,7 +33,6 @@ public class SignupController {
     }
 
     @ApiOperation(value="회원 등록", notes="회원가입 api")
-    @CrossOrigin(origins = "*")
     @PostMapping(
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
