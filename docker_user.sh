@@ -1,4 +1,5 @@
 #!/bin/bash
+git pull
 
 docker stop user
 docker rm user

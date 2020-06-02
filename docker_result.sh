@@ -1,4 +1,5 @@
 #!/bin/bash
+git pull
 
 docker stop result
 docker rm result
