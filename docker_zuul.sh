@@ -13,10 +13,8 @@ echo "zipkin = ${zipkin}"
 echo "config = ${config}"
 echo "eureka = ${eureka}"
 
-cd api-zuul-springboot
-mvn clean
-mvn compile
-mvn package
+cd back-zuul-springboot
+mvn clean compile package
 
 cd ../
 
