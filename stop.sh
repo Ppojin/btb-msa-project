@@ -18,13 +18,3 @@ docker rm user -f
 docker rm qabank -f
 docker rm exam -f
 docker rm result -f
-
-# docker rmi rabbitmq
-# docker rmi zipkin
-docker rmi config
-docker rmi eureka
-docker rmi zuul
-docker rmi user
-docker rmi qabank
-docker rmi exam
-docker rmi result
