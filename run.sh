@@ -23,6 +23,8 @@ zipkin=$(docker inspect zipkin | grep IPAddress | grep -E -o "(25[0-5]|2[0-4][0-
 echo "zipkin = ${zipkin}"
 
 # config
+## build
+docker build -t config back-config-springboot/.
 ## run
 docker run -d --name config -p 8012:8012 \
 -e "spring.rabbitmq.host=${rabbitmq}" \
@@ -35,6 +37,8 @@ echo "config = ${config}"
 sleep 30s
 
 # eureka
+## build
+docker build -t eureka back-eureka-springboot/.
 ## run
 docker run -d --name eureka -p 8010:8010 \
 -e "eureka.client.service-url.defaultZone=http://localhost:8010/eureka" \
@@ -46,6 +50,8 @@ eureka=$(docker inspect eureka | grep IPAddress | grep -E -o "(25[0-5]|2[0-4][0-
 echo "eureka = ${eureka}"
 
 # zuul
+## build
+docker build -t zuul back-zuul-springboot/.
 ## run
 docker run -d --name zuul -p 8011:8011 \
 -e "spring.rabbitmq.host=${rabbitmq}" \
@@ -56,6 +62,8 @@ docker run -d --name zuul -p 8011:8011 \
 zuul
 
 # user
+## build
+docker build -t user api-user-springboot/.
 ## run
 docker run --name user -d \
 -p 10000:10000 \
@@ -68,6 +76,8 @@ docker run --name user -d \
 user
 
 # qabank
+## build
+docker build -t qabank api-qabank-springboot/.
 ## run
 docker run --name qabank -d \
 -p 20000:20000 \
@@ -80,6 +90,8 @@ docker run --name qabank -d \
 qabank
 
 # exam
+## build
+docker build -t exam api-exam-springboot/.
 ## run
 docker run --name exam -d \
 -p 30000:30000 \
@@ -92,6 +104,8 @@ docker run --name exam -d \
 exam
 
 # result
+## build
+docker build -t result api-result-springboot/.
 ## run
 docker run --name result -d \
 -p 40000:40000 \
