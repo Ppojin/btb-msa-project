@@ -27,6 +27,7 @@ import java.util.Enumeration;
 
 @Api(tags = {"1. User"})
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/v1/users")
 @Slf4j
 public class UserController {
@@ -40,6 +41,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "회원 조회", notes="회원조회 api")
+    @CrossOrigin(origins = "*")
     @GetMapping(
             value = "{customerPK}",
             produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}
