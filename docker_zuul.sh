@@ -20,7 +20,7 @@ cd ../
 
 # zuul
 ## build
-docker build -t zuul api-zuul-springboot/.
+docker build -t zuul back-zuul-springboot/.
 ## run
 docker run -d --name zuul -p 8011:8011 \
 -e "spring.rabbitmq.host=${rabbitmq}" \
