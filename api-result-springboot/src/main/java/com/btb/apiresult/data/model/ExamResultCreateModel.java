@@ -9,8 +9,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 public class ExamResultCreateModel {
-    private String examPk;
+    private String examPK;
     private String groupName;
-    private String customerPk;
+    private String customerPK;
     private List<TestCaseResultCreateModel> testCaseResultCreateList;
 }

@@ -23,14 +23,17 @@ public class ResultServiceImpl implements ResultService{
         ModelMapper modelMapper = new ModelMapper();
         ResultEntity resultEntity = modelMapper.map(resultDto, ResultEntity.class);
         ResultEntity savedResultEntity = resultRepository.save(resultEntity);
+
+        String examResultPK = savedResultEntity.getExamResultPK();
         List<TestCaseResultResponseModel> testCaseResultResponseModelList = new ArrayList<>();
         resultDto.getTestCaseResultCreateList().forEach(testCaseResultCreateModel -> {
             TestCaseResultEntity testCaseResultEntity = modelMapper.map(testCaseResultCreateModel, TestCaseResultEntity.class);
-            testCaseResultEntity.setExamResultPk(savedResultEntity.getExamResultPk());
+            testCaseResultEntity.setExamResultPK(examResultPK);
             testCaseResultResponseModelList.add(modelMapper.map(testCaseResultRepository.save(testCaseResultEntity), TestCaseResultResponseModel.class));
         });
         resultDto.setTestCaseResultResponseList(testCaseResultResponseModelList);
-        resultDto.setExamResultPk(resultEntity.getExamResultPk());
+        resultDto.setExamResultPK(resultEntity.getExamResultPK());
+
         return resultDto;
     }
 
@@ -42,7 +45,7 @@ public class ResultServiceImpl implements ResultService{
         Type resultDtoListType = new TypeToken<List<ResultDto>>(){}.getType();
         List<ResultDto> resultDtoList = modelMapper.map(resultEntityList, resultDtoListType);
         resultDtoList.forEach(resultDto -> {
-            List<TestCaseResultEntity> testCaseResultEntityList = testCaseResultRepository.findAllByExamResultPk(resultDto.getExamResultPk());
+            List<TestCaseResultEntity> testCaseResultEntityList = testCaseResultRepository.findAllByExamResultPK(resultDto.getExamResultPK());
             Type testCaseResultResponseListType = new TypeToken<List<TestCaseResultResponseModel>>(){}.getType();
             List<TestCaseResultResponseModel> testCaseResultResponseModelList = modelMapper.map(testCaseResultEntityList, testCaseResultResponseListType);
             resultDto.setTestCaseResultResponseList(testCaseResultResponseModelList);
@@ -51,14 +54,14 @@ public class ResultServiceImpl implements ResultService{
     }
 
 //    @Override
-//    public List<ResultDto> listAllByCustomerPk(String customerPk) {
+//    public List<ResultDto> listAllByCustomerPK(String customerPK) {
 //        ModelMapper modelMapper = new ModelMapper();
 //        modelMapper.getConfiguration().setAmbiguityIgnored(true);
-//        List<ResultEntity> resultEntityList = resultRepository.findAllByCustomerPk(customerPk);
+//        List<ResultEntity> resultEntityList = resultRepository.findAllByCustomerPK(customerPK);
 //        Type resultDtoListType = new TypeToken<List<ResultDto>>(){}.getType();
 //        List<ResultDto> resultDtoList = modelMapper.map(resultEntityList, resultDtoListType);
 //        resultDtoList.forEach(resultDto -> {
-//            List<TestCaseResultEntity> testCaseResultEntityList = testCaseResultRepository.findAllByExamResultPk(resultDto.getExamResultPk());
+//            List<TestCaseResultEntity> testCaseResultEntityList = testCaseResultRepository.findAllByExamResultPK(resultDto.getExamResultPK());
 //            Type testCaseResultResponseListType = new TypeToken<List<TestCaseResultResponseModel>>(){}.getType();
 //            List<TestCaseResultResponseModel> testCaseResultResponseModelList = modelMapper.map(testCaseResultEntityList, testCaseResultResponseListType);
 //            resultDto.setTestCaseResultResponseList(testCaseResultResponseModelList);
@@ -67,14 +70,14 @@ public class ResultServiceImpl implements ResultService{
 //    }
 //
 //    @Override
-//    public List<ResultDto> listAllByExamPkAndCustomerPk(String examPk, String customerPk) {
+//    public List<ResultDto> listAllByExamPKAndCustomerPK(String examPK, String customerPK) {
 //        ModelMapper modelMapper = new ModelMapper();
 //        modelMapper.getConfiguration().setAmbiguityIgnored(true);
-//        List<ResultEntity> resultEntityList = resultRepository.findAllByExamPkAndCustomerPk(examPk, customerPk);
+//        List<ResultEntity> resultEntityList = resultRepository.findAllByExamPKAndCustomerPK(examPK, customerPK);
 //        Type resultDtoListType = new TypeToken<List<ResultDto>>(){}.getType();
 //        List<ResultDto> resultDtoList = modelMapper.map(resultEntityList, resultDtoListType);
 //        resultDtoList.forEach(resultDto -> {
-//            List<TestCaseResultEntity> testCaseResultEntityList = testCaseResultRepository.findAllByExamResultPk(resultDto.getExamResultPk());
+//            List<TestCaseResultEntity> testCaseResultEntityList = testCaseResultRepository.findAllByExamResultPK(resultDto.getExamResultPK());
 //            Type testCaseResultResponseListType = new TypeToken<List<TestCaseResultResponseModel>>(){}.getType();
 //            List<TestCaseResultResponseModel> testCaseResultResponseModelList = modelMapper.map(testCaseResultEntityList, testCaseResultResponseListType);
 //            resultDto.setTestCaseResultResponseList(testCaseResultResponseModelList);

@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TestCaseResultResponseModel {
-    private String testCasePk;
+    private String testCasePK;
+    private String examPK;
+    private String questionPK;
     private String testCaseMethod;
     private Boolean earned;
 }

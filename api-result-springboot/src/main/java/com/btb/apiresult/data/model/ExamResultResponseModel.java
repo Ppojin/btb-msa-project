@@ -12,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExamResultResponseModel {
-    private String examResultPk;
-    private String examPk;
+    private String examResultPK;
+    private String examPK;
     private String groupName;
-    private String customerPk;
+    private String customerPK;
     private String createDate;
     private List<TestCaseResultResponseModel> testCaseResultResponseList;
 }

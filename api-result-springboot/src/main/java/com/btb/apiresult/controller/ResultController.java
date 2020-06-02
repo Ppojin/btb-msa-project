@@ -36,19 +36,19 @@ public class ResultController {
 
     @GetMapping
     public ResponseEntity<List<ExamResultResponseModel>> listAllResult(
-            @RequestParam("customerPk") String customerPk,
-            @RequestParam("examPk") String examPk
+            @RequestParam("customerPK") String customerPK,
+            @RequestParam("examPK") String examPK
     ){
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setAmbiguityIgnored(true);
         Type resultResponseModelListType = new TypeToken<List<ExamResultResponseModel>>(){}.getType();
         List<ResultDto> resultDtoList;
-        if(customerPk != null && examPk != null){
-            resultDtoList = resultService.listAll().stream().filter(resultDto -> resultDto.getCustomerPk().equals(customerPk) && resultDto.getExamPk().equals(examPk)).collect(Collectors.toList());
-        } else if (customerPk != null){
-            resultDtoList = resultService.listAll().stream().filter(resultDto -> resultDto.getCustomerPk().equals(customerPk)).collect(Collectors.toList());
-        } else if (examPk != null){
-            resultDtoList = resultService.listAll().stream().filter(resultDto -> resultDto.getExamPk().equals(examPk)).collect(Collectors.toList());
+        if(customerPK != null && examPK != null){
+            resultDtoList = resultService.listAll().stream().filter(resultDto -> resultDto.getCustomerPK().equals(customerPK) && resultDto.getExamPK().equals(examPK)).collect(Collectors.toList());
+        } else if (customerPK != null){
+            resultDtoList = resultService.listAll().stream().filter(resultDto -> resultDto.getCustomerPK().equals(customerPK)).collect(Collectors.toList());
+        } else if (examPK != null){
+            resultDtoList = resultService.listAll().stream().filter(resultDto -> resultDto.getExamPK().equals(examPK)).collect(Collectors.toList());
         } else {
             resultDtoList = resultService.listAll();
         }

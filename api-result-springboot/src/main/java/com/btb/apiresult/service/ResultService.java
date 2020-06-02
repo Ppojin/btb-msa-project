@@ -8,6 +8,6 @@ import java.util.List;
 public interface ResultService {
     ResultDto createResult(ResultDto resultDto);
     List<ResultDto> listAll();
-//    List<ResultDto> listAllByCustomerPk(String customerPk);
-//    List<ResultDto> listAllByExamPkAndCustomerPk(String examPk, String customerPk);
+//    List<ResultDto> listAllByCustomerPK(String customerPK);
+//    List<ResultDto> listAllByExamPKAndCustomerPK(String examPK, String customerPK);
 }

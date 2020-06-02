@@ -1,35 +1,21 @@
 #!/bin/bash
 cd back-config-springboot
-mvn clean
-mvn compile
-mvn package
+mvn clean compile package
 
 cd ../back-eureka-springboot
-mvn clean
-mvn compile
-mvn package
+mvn clean compile package
 
 cd ../back-zuul-springboot
-mvn clean
-mvn compile
-mvn package
+mvn clean compile package
 
 cd ../api-user-springboot
-mvn clean
-mvn compile
-mvn package
+mvn clean compile package
 
 cd ../api-qabank-springboot
-mvn clean
-mvn compile
-mvn package
+mvn clean compile package
 
 cd ../api-exam-springboot
-mvn clean
-mvn compile
-mvn package
+mvn clean compile package
 
 cd ../api-result-springboot
-mvn clean
-mvn compile
-mvn package
+mvn clean compile package

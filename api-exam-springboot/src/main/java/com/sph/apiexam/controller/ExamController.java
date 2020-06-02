@@ -40,9 +40,7 @@ public class ExamController {
     }
 
     @GetMapping
-    public List<ExamResponseModel> listAllExam(
-            @RequestParam("groupName") String groupName
-    ){
+    public List<ExamResponseModel> listAllExam(@RequestParam("groupName") String groupName){
         List<ExamDto> examDtoList;
         if(groupName==null){
             examDtoList = examService.listAll();

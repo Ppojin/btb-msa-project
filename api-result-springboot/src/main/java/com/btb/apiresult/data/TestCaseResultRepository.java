@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface TestCaseResultRepository extends CrudRepository<TestCaseResultEntity, String> {
-    TestCaseResultEntity findByTestCasePk(String testCasePk);
+    TestCaseResultEntity findByTestCasePK(String testCasePK);
     List<TestCaseResultEntity> findAll();
-    List<TestCaseResultEntity> findAllByExamResultPk(String ExamResultesultPK);
+    List<TestCaseResultEntity> findAllByExamResultPK(String ExamResultesultPK);
 }

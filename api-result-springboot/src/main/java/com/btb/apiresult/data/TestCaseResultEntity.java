@@ -21,10 +21,14 @@ import javax.validation.constraints.NotNull;
 public class TestCaseResultEntity {
     @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String testCasePk;
+    private String testCasePK;
+
     @NotNull
     @Column
-    private String examResultPk;
+    private String examResultPK;
+    @NotNull
+    @Column
+    private String questionPK;
     @NotNull
     @Column
     private String testCaseMethod;
