@@ -14,8 +14,9 @@ class App extends Component{
 
   getUserHandler = () => {
     console.log(this.props)
-    this.props.getUser({
-    })
+    const token = "eyJhbGciOiJIUzUxMiIsImdyb3VwIjoiZGVmYXVsdCJ9.eyJzdWIiOiJhc2RmQGFzZGYuYXNkZiIsImV4cCI6MTU5MTA3OTA0OX0.YrYyEhg50DJ1p-tGAWo--VYYJdPcqRVWysriGjtrzp419X3LvjHuOHnnJihTSREqrM28-HBoKlrdbQ8LNiX1mg";
+    const customerPK = "2c9d8086727377d20172737ca1060000";
+    this.props.getUser(customerPK, token);
   }
 
   render(){

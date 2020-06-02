@@ -77,7 +77,7 @@ export default ((state = initialState, action)=> {
   }
 })
 
-const apiUrl = 'http://localhost:8011/api-user';
+const apiUrl = 'http://121.139.74.97:8011/api-user';
 
 // Actions
 export const signup = entity => async dispatch => {
@@ -103,8 +103,13 @@ export const getUser = (id, token) => {
   const requestUrl = `${apiUrl}/v1/users/${id}`;
   return {
     type: ACTION_TYPES.FETCH_CUSTOMER,
-    payload: axios.get(requestUrl, null, {
-      headers: {'Authorization': token}
+    payload: axios({
+      method: 'get',
+      url: requestUrl,  
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Access-Control-Allow-Origin':'*'
+      }
     }),
   };
 };

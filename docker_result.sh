@@ -25,11 +25,11 @@ cd ../
 docker build -t result api-result-springboot/.
 ## run
 docker run --name result \
--p 30000:30000 \
+-p 40000:40000 \
 -e "spring.rabbitmq.host=${rabbitmq}" \
 -e "spring.cloud.config.uri=http://${config}:8012" \
 -e "eureka.client.service-url.defaultZone=http://${eureka}:8010/eureka" \
--e "server.port=30000" \
+-e "server.port=40000" \
 -e "spring.cloud.config.name=docker" \
 --network my-net \
 result
