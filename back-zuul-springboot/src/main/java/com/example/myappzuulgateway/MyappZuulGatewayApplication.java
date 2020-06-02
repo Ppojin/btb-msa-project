@@ -17,18 +17,18 @@ public class MyappZuulGatewayApplication {
         SpringApplication.run(MyappZuulGatewayApplication.class, args);
     }
 
-    @Bean
-    public WebMvcConfigurer webMvcConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("*");
-//                        .allowedMethods("*")
-//                        .allowedHeaders("*")
-//                        .allowCredentials(false)
-//                        .maxAge(3600);
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer webMvcConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**")
+//                        .allowedOrigins("*");
+////                        .allowedMethods("*")
+////                        .allowedHeaders("*")
+////                        .allowCredentials(false)
+////                        .maxAge(3600);
+//            }
+//        };
+//    }
 }
