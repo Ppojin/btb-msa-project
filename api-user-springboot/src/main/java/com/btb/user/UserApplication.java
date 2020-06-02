@@ -46,11 +46,11 @@ public class UserApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*")
-                        .allowedMethods("*")
-                        .allowedHeaders("*")
-                        .allowCredentials(false)
-                        .maxAge(3600);
+                        .allowedOrigins("*");
+//                        .allowedMethods("*")
+//                        .allowedHeaders("*")
+//                        .allowCredentials(false)
+//                        .maxAge(3600);
             }
         };
     }
