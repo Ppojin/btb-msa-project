@@ -77,7 +77,7 @@ export default ((state = initialState, action)=> {
   }
 })
 
-const apiUrl = 'http://localhost:8011/api-user';
+const apiUrl = 'http://121.139.74.97:8011/api-user';
 
 // Actions
 export const signup = entity => async dispatch => {
