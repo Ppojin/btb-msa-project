@@ -24,7 +24,7 @@ cd ../
 ## build
 docker build -t exam api-exam-springboot/.
 ## run
-docker run --name exam \
+docker run -d --name exam \
 -p 30000:30000 \
 -e "spring.rabbitmq.host=${rabbitmq}" \
 -e "spring.cloud.config.uri=http://${config}:8012" \
