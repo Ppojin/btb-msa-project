@@ -19,11 +19,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         this.env = env;
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.cors().disable();
         http.headers().frameOptions().disable();
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, env.getProperty("api.login.url.path")).permitAll()
