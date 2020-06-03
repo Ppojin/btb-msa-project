@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-import { cleanEntity } from 'shared/util/entity-utils';
+// import { cleanEntity } from 'shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'shared/reducers/action-type.util';
+// import axiosMiddleware from 'redux-axios-middleware';
+// import { applyMiddleware } from 'redux';
+// import thunk from 'redux-thunk';
 
 export const ACTION_TYPES = {
   FETCH_CUSTOMER: 'customer/FETCH_CUSTOMER',
@@ -23,6 +26,7 @@ const initialState = {
 export default ((state = initialState, action)=> {
   switch (action.type) {
     case REQUEST(ACTION_TYPES.FETCH_CUSTOMER):
+      console.log(action, state)
       return {
         ...state,
         errorMessage: null,
@@ -31,6 +35,7 @@ export default ((state = initialState, action)=> {
       };
     case REQUEST(ACTION_TYPES.SIGN_UP):
     case REQUEST(ACTION_TYPES.SIGN_IN):
+      console.log(action, state)
       return {
         ...state,
         errorMessage: null,
@@ -40,6 +45,7 @@ export default ((state = initialState, action)=> {
     case FAILURE(ACTION_TYPES.FETCH_CUSTOMER):
     case FAILURE(ACTION_TYPES.SIGN_UP):
     case FAILURE(ACTION_TYPES.SIGN_IN):
+      console.log(action, state)
       return {
         ...state,
         loading: false,
@@ -48,6 +54,7 @@ export default ((state = initialState, action)=> {
         errorMessage: action.payload,
       };
     case SUCCESS(ACTION_TYPES.FETCH_CUSTOMER_LIST):
+      console.log(action, state)
       return {
         ...state,
         loading: false,
@@ -55,64 +62,122 @@ export default ((state = initialState, action)=> {
         totalItems: parseInt(action.payload.headers['x-total-count'], 10),
       };
     case SUCCESS(ACTION_TYPES.FETCH_CUSTOMER):
+      console.log(action, state)
       return {
         ...state,
         loading: false,
         entity: action.payload.data,
       };
     case SUCCESS(ACTION_TYPES.SIGN_UP):
-    case SUCCESS(ACTION_TYPES.SIGN_IN):
+      console.log(action, state)
       return {
         ...state,
         updating: false,
         updateSuccess: true,
         entity: action.payload.data,
       };
+    case SUCCESS(ACTION_TYPES.SIGN_IN):
+      console.log(action.payload)
+      return {
+        ...state,
+        updating: false,
+        updateSuccess: true,
+        // entity: action.payload.data,
+        // headers: action.payload.headers,
+        headers: action.payload.data,
+      };
     case ACTION_TYPES.RESET:
+      console.log(action, state)
       return {
         ...initialState,
       };
     default:
+      console.log(action, state)
       return state;
   }
 })
 
-const apiUrl = 'http://localhost:8011/api-user';
+const apiUrl = 'http://localhost:10000';
+// const apiUrl = 'http://localhost:8011/api-user';
+const signupAPI = (entity => axios.post(`${apiUrl}/signup`, entity))
+const signinAPI = (entity) => axios.post(`${apiUrl}/signin`, entity)
+const getCustomerAPI = (id, token) => axios.get(`${apiUrl}/v1/users/${id}`, null, {headers: {'Authorization': `Bearer ${token}`,}});
 
 // Actions
-export const signup = entity => async dispatch => {
-  const result = await dispatch({
-    type: ACTION_TYPES.SIGN_UP,
-    payload: axios.post(`${apiUrl}/signup`, cleanEntity(entity)),
-  });
-  // dispatch(signup());
-  console.log("where to go?");
-  return result;
-};
+export const signup = entity => dispatch => {
+  dispatch({type: REQUEST(ACTION_TYPES.SIGN_IN)})
+  return signupAPI(entity).then(response => {
+      dispatch({
+        type: SUCCESS(ACTION_TYPES.SIGN_IN),
+        payload: response,
+      })
+  }).catch(error => {
+    dispatch({
+      type: FAILURE(ACTION_TYPES.SIGN_IN),
+      payload: error,
+    })
+  })
+}
 
-export const signin = entity => async dispatch => {
-  const result = await dispatch({
-    type: ACTION_TYPES.SIGN_IN,
-    payload: axios.post(`${apiUrl}/signin`, cleanEntity(entity)),
-  });
-  dispatch(getUser());
-  return result;
-};
+// export const signup = entity => async dispatch => {
+//   const result = await dispatch({
+//     type: ACTION_TYPES.SIGN_UP,
+//     payload: axios.post(`${apiUrl}/signin`, entity),
+//   });
+//   return result;
+// };
 
-export const getUser = (id, token) => {
-  const requestUrl = `${apiUrl}/v1/users/${id}`;
-  return {
-    type: ACTION_TYPES.FETCH_CUSTOMER,
-    payload: axios({
-      method: 'get',
-      url: requestUrl,  
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        // 'Access-Control-Allow-Origin':'*'
-      }
-    }).then(
-      result => {console.log(result)},
-      e => {console.log(e)}
-    ),
-  };
-};
+export const signin = entity => dispatch => {
+  dispatch({type: REQUEST(ACTION_TYPES.SIGN_IN)})
+  return signinAPI(entity).then(response => {
+      dispatch({
+        type: SUCCESS(ACTION_TYPES.SIGN_IN),
+        payload: response,
+      })
+  }).catch(error => {
+    dispatch({
+      type: FAILURE(ACTION_TYPES.SIGN_IN),
+      payload: error,
+    })
+  })
+}
+
+// export const signin = entity => async dispatch => {
+//   const result = await dispatch({
+//     type: ACTION_TYPES.SIGN_IN,
+//     payload: axios.post(`${apiUrl}/signin`, cleanEntity(entity)),
+//   });
+//   dispatch(getCustomer());
+//   return result;
+// };
+
+export const getCustomer = (id, token) => dispatch => {
+  dispatch({type: REQUEST(ACTION_TYPES.FETCH_CUSTOMER)})
+  return getCustomerAPI(id, token).then(
+    response => {
+      dispatch({
+        type: SUCCESS(ACTION_TYPES.FETCH_CUSTOMER),
+        payload: response
+      })
+    }
+  ).catch(error => {
+    dispatch({
+      type: FAILURE(ACTION_TYPES.FETCH_CUSTOMER),
+      payload: error
+    })
+  })
+}
+
+// export const getCustomer = (id, token) => {  
+//   return {
+//     type: ACTION_TYPES.FETCH_CUSTOMER,
+//     payload: axios.get(requestUrl, null, {headers: {'Authorization': `Bearer ${token}`,}}),
+//   };
+// };
+
+// const store = createStroe(
+//   reducer,
+//   applyMiddleware(thunk)
+// );
+
+// dispatch(getCustomer)
