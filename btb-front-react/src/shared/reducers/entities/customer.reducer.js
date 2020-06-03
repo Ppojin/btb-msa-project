@@ -97,11 +97,18 @@ export default ((state = initialState, action)=> {
   }
 })
 
-const apiUrl = 'http://localhost:10000';
-// const apiUrl = 'http://localhost:8011/api-user';
+// const apiUrl = 'http://localhost:10000';
+const apiUrl = 'http://localhost:8011/api-user';
 const signupAPI = (entity => axios.post(`${apiUrl}/signup`, entity))
 const signinAPI = (entity) => axios.post(`${apiUrl}/signin`, entity)
-const getCustomerAPI = (id, token) => axios.get(`${apiUrl}/v1/users/${id}`, null, {headers: {'Authorization': `Bearer ${token}`,}});
+// const getCustomerAPI = (id, token) => axios.get(`${apiUrl}/v1/users/${id}`, null, {headers: {'Authorization': `Bearer ${token}`,}});
+const getCustomerAPI = (id, token) => axios({
+  mehtod: "post",
+  url: `${apiUrl}/v1/users/${id}`, 
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+});
 
 // Actions
 export const signup = entity => dispatch => {

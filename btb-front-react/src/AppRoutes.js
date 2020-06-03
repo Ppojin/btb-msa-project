@@ -1,15 +1,18 @@
 import React from 'react';
 
-import { Router, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Customer from 'container/Customer';
 
 const AppRoutes = () => {
+    // return (
+    //     <div></div>
+    // )
     return (
         <div className="containerRoutes">
-            <Router>
+            <Switch>
                 <Route path="/customer" component={Customer}/>
                 {/* <Route path="/" component={} /> */}
-            </Router>
+            </Switch>
         </div>
     )
 }

@@ -52,7 +52,6 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request){
         String authHeader = request.getHeader(env.getProperty("authorization.token.header.name"));
-
         if(authHeader == null){// 받은 토큰이 없거나
             return null;
         }

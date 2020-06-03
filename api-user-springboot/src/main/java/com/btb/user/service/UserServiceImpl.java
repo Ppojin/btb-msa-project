@@ -70,4 +70,15 @@ public class UserServiceImpl implements UserService{
                 new ArrayList<>()
         );
     }
+
+    @Override
+    public UserDto confirmUser(String email, String password) throws UserNotFoundException {
+        ModelMapper modelMapper = new ModelMapper();
+        UserEntity userEntity = repository.findByEmail(email);
+        if(bCryptPasswordEncoder.matches(password, userEntity.getEncryptedPassword())){
+            return modelMapper.map(userEntity, UserDto.class);
+        } else {
+            return null;
+        }
+    }
 }
