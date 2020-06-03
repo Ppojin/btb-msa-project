@@ -83,8 +83,8 @@ export default ((state = initialState, action)=> {
         updating: false,
         updateSuccess: true,
         // entity: action.payload.data,
-        // headers: action.payload.headers,
-        headers: action.payload.data,
+        headers: action.payload.headers,
+        // headers: action.payload.data,
       };
     case ACTION_TYPES.RESET:
       console.log(action, state)

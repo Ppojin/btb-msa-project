@@ -21,6 +21,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,18 +82,23 @@ public class SignupController {
 //                .signWith(SignatureAlgorithm.HS512, "asdf;lkj")
                     .compact();
 
+            MultiValueMap<String, String> header = new LinkedMultiValueMap<>();
+            header.add("customerPK", userDto.getCustomerPK());
+            header.add("token", token);
+            return new ResponseEntity(header, HttpStatus.OK);
+
 //            // use ResponseEntity
 //            HttpHeaders httpHeaders = new HttpHeaders();
 //            httpHeaders.set("token", token);
 //            httpHeaders.set("CustomerPK", userDto.getCustomerPK());
 //            return ResponseEntity.status(HttpStatus.OK).headers(httpHeaders).body(null);
 
-            // use response
-            response.addHeader("token", token);
-            response.addHeader("customerPK", userDto.getCustomerPK());
-            return ResponseEntity.status(HttpStatus.OK).body(null);
+//            // use response
+//            response.addHeader("token", token);
+//            response.addHeader("customerPK", userDto.getCustomerPK());
+//            return ResponseEntity.status(HttpStatus.OK).body(null);
 
-            // useBody
+//            // useBody
 //            Map headerMap = new HashMap();
 //            headerMap.put("token", token);
 //            headerMap.put("customerPK", userDto.getCustomerPK());

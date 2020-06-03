@@ -32,10 +32,10 @@ public class MyappZuulGatewayApplication {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
 //        config.addAllowedHeader("*");
-        config.setAllowedHeaders(Arrays.asList("Accept", "Authorization", "Content-Type", "Origin", "XSRF-TOKEN", "X-XSRF-TOKEN", "X-Requested-With"));
+        config.setAllowedHeaders(Arrays.asList("customerPK", "Accept", "Authorization", "Content-Type", "Origin", "XSRF-TOKEN", "X-XSRF-TOKEN", "X-Requested-With"));
         config.addAllowedMethod("*");
 
-        config.setExposedHeaders(Arrays.asList("Authorization", "x-xsrf-token", "Origin", "Accept", "X-Requested-With", "Content-Type", "Access-Control-Allow-Method", "Access-Control-Allow-Headers", "Access-Control-Request-Method", "Access-Control-Request-Headers", "token"));
+        config.setExposedHeaders(Arrays.asList("customerPK", "Authorization", "x-xsrf-token", "Origin", "Accept", "X-Requested-With", "Content-Type", "Access-Control-Allow-Method", "Access-Control-Allow-Headers", "Access-Control-Request-Method", "Access-Control-Request-Headers", "token"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
@@ -51,7 +51,7 @@ public class MyappZuulGatewayApplication {
         configuration.setAllowedOrigins(ImmutableList.of("*"));
         configuration.setAllowedMethods(ImmutableList.of("HEAD","GET", "POST", "PUT", "DELETE", "PATCH"));
         configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(ImmutableList.of("Authorization", "key", "Cache-Control", "Content-Type"));
+        configuration.setAllowedHeaders(ImmutableList.of("customerPK", "Authorization", "key", "Cache-Control", "Content-Type"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

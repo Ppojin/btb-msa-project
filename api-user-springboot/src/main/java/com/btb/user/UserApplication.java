@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 @EnableFeignClients
@@ -53,33 +54,13 @@ public class UserApplication {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
 //        config.addAllowedHeader("*");
-        config.setAllowedHeaders(Arrays.asList(
-                "Accept",
-                "Authorization",
-                "Content-Type",
-                "Origin",
-                "XSRF-TOKEN",
-                "X-XSRF-TOKEN",
-                "X-Requested-With"
-        ));
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Accept", "Content-Type", "Origin", "XSRF-TOKEN", "X-XSRF-TOKEN", "X-Requested-With"));
         config.addAllowedMethod("*");
-
-        config.setExposedHeaders(
-                Arrays.asList(
-                        "customerPK",
-                        "Authorization",
-                        "x-xsrf-token",
-                        "Origin",
-                        "Accept",
-                        "X-Requested-With",
-                        "Content-Type",
-                        "Access-Control-Allow-Method",
-                        "Access-Control-Allow-Headers",
-                        "Access-Control-Request-Method",
-                        "Access-Control-Request-Headers",
-                        "token"
-                )
-        );
+//        config.addExposedHeader("*");
+        List<String> allowHeaderList = Arrays.asList("customerPK", "token",
+                "x-xsrf-token", "Origin", "Accept", "Content-Type", "X-Requested-With",
+                "Access-Control-Allow-Method", "Access-Control-Allow-Headers", "Access-Control-Request-Method", "Access-Control-Request-Headers");
+        config.setExposedHeaders(allowHeaderList);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

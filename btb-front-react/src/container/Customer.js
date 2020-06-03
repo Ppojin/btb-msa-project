@@ -14,8 +14,6 @@ class App extends Component{
     this.state = {
       signupEntity: `{"email": "asdf@asdf.asdf", "name": "asdf", "password": "asdfasdf"}`,
       signinEntity: `{}`,
-      token: "eyJhbGciOiJIUzUxMiIsImdyb3VwIjoiZGVmYXVsdCJ9.eyJzdWIiOiJhc2RmQGFzZGYuYXNkZiIsImV4cCI6MTU5MTE0NzExOH0.KYSuvHnLIybV_sNK-pE7XssEKkwSFhDLKhAw_olcSAW87ZKyXili-ajVysd5gya_AJCBmt4tHRO_a4YWwtP91w",
-      customerPK: "ff80808172750ccf017275114b7f0000",
     }
   }
 
@@ -27,8 +25,8 @@ class App extends Component{
 
   getUserHandler = () => {
     if(this.props.headers !== null || this.props.headers !== undefined ){
-      const {customerPK, token} = this.props.headers;
-      this.props.getCustomer(customerPK, token);
+      const {customerpk, token} = this.props.headers;
+      this.props.getCustomer(customerpk, token);
     }
   }
 
@@ -65,9 +63,9 @@ class App extends Component{
         </div>
         <div className="getUser">
           {/* <div><input name="token" type="text" style={{width: 500}} onChange={this.handlerInputboxChange} value={this.state.token} /><label > :token </label></div>
-          <div><input name="customerPK" type="text" style={{width: 500}} onChange={this.handlerInputboxChange} value={this.state.customerPK}/><label > :customerPK </label></div> */}
+          <div><input name="customerpk" type="text" style={{width: 500}} onChange={this.handlerInputboxChange} value={this.state.customerPK}/><label > :customerPK </label></div> */}
           <div><label>token:{headers == null || headers.token} </label></div>
-          <div><label>customerPK:{headers == null || headers.customerPK} </label></div>
+          <div><label>customerpk:{headers == null || headers.customerpk} </label></div>
           <div><button onClick={this.getUserHandler}>유저정보 확인</button></div>
           <div>{JSON.stringify(this.props.customer)}</div>
         </div>
