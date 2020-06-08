@@ -28,8 +28,12 @@ public class ExamEntity {
     @DecimalMax(value = "5", message = "value must between 1~3")
     @DecimalMin(value = "1", message = "value must between 1~3")
     private Integer examLevel;
-    //    @Column(columnDefinition = "varchar(255) default 'default'")
     @Column
+    private String createdGit;
+    @Column
+    private String createdBranch;
+//    @Column
+    @Column(columnDefinition = "varchar(255) default 'default'")
     private String groupName;
     @Column
     private Date startDate;
