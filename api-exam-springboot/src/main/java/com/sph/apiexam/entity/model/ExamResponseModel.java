@@ -18,7 +18,6 @@ public class ExamResponseModel {
     private Date endDate;
     private String groupName;
     private String createdGit;
-    private String createdBranch;
 
     private String createDate;
 

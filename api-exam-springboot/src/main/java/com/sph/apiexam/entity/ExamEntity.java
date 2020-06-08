@@ -30,8 +30,6 @@ public class ExamEntity {
     private Integer examLevel;
     @Column
     private String createdGit;
-    @Column
-    private String createdBranch;
 //    @Column
     @Column(columnDefinition = "varchar(255) default 'default'")
     private String groupName;

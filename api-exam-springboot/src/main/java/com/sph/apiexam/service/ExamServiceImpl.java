@@ -51,15 +51,18 @@ public class ExamServiceImpl implements ExamService{
     public ExamDto createExam(ExamDto examDto) {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setAmbiguityIgnored(true);
+
         ExamDto loadedExamDto = examEntityToExamDto(examDto);
-//        loadedExamDto.setExamPK(
-//                examRepository.save(
-//                        modelMapper.map(loadedExamDto, ExamEntity.class)
-//                ).getExamPK()
-//        );
-        ExamEntity examEntity = modelMapper.map(loadedExamDto, ExamEntity.class);
-        ExamEntity savedExamEntity = examRepository.save(examEntity);
-        loadedExamDto.setExamPK(savedExamEntity.getExamPK());
+
+        //Todo:  create git project
+        loadedExamDto.setCreatedGit("http://gitulrsample~~@@$@##$!@#");
+
+        loadedExamDto.setExamPK(
+                examRepository.save(modelMapper.map(loadedExamDto, ExamEntity.class)).getExamPK()
+        );
+//        ExamEntity examEntity = modelMapper.map(loadedExamDto, ExamEntity.class);
+//        ExamEntity savedExamEntity = examRepository.save(examEntity);
+//        loadedExamDto.setExamPK(savedExamEntity.getExamPK());
         return loadedExamDto;
     }
 
