@@ -9,6 +9,7 @@ import com.sph.apiexam.entity.model.QuestionResponseModel;
 import com.sph.apiexam.entity.model.UserResponseModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,13 @@ public class ExamServiceImpl implements ExamService{
     private ExamRepository examRepository;
     private UserServiceClient userServiceClient;
     private QABankServiceClient qaBankServiceClient;
+    private Environment env;
 
-    public ExamServiceImpl(ExamRepository examRepository, UserServiceClient userServiceClient, QABankServiceClient qaBankServiceClient) {
+    public ExamServiceImpl(ExamRepository examRepository, UserServiceClient userServiceClient, QABankServiceClient qaBankServiceClient, Environment env) {
         this.examRepository = examRepository;
         this.userServiceClient = userServiceClient;
         this.qaBankServiceClient = qaBankServiceClient;
+        this.env = env;
     }
 
     private ExamDto examEntityToExamDto(ExamDto examDto) throws RuntimeException{
@@ -54,15 +57,15 @@ public class ExamServiceImpl implements ExamService{
 
         ExamDto loadedExamDto = examEntityToExamDto(examDto);
 
-        //Todo:  create git project
-        loadedExamDto.setCreatedGit("http://gitulrsample~~@@$@##$!@#");
+        String examPK = examRepository.save(modelMapper.map(loadedExamDto, ExamEntity.class)).getExamPK();
+        loadedExamDto.setExamPK(examPK);
 
-        loadedExamDto.setExamPK(
-                examRepository.save(modelMapper.map(loadedExamDto, ExamEntity.class)).getExamPK()
-        );
-//        ExamEntity examEntity = modelMapper.map(loadedExamDto, ExamEntity.class);
-//        ExamEntity savedExamEntity = examRepository.save(examEntity);
-//        loadedExamDto.setExamPK(savedExamEntity.getExamPK());
+        String gitUrl = String.format("http://%s/btb/%s", env.getProperty("git_server.host"), examPK);
+        loadedExamDto.setCreatedGit(gitUrl);
+        //Todo: create git project
+        //============================================================
+
+        examRepository.save(modelMapper.map(loadedExamDto, ExamEntity.class));
         return loadedExamDto;
     }
 
