@@ -1,6 +1,7 @@
 package com.sph.apiexam.controller;
 
 import com.sph.apiexam.entity.ExamDto;
+import com.sph.apiexam.entity.ExamEntity;
 import com.sph.apiexam.entity.model.ExamCreateModel;
 import com.sph.apiexam.entity.model.ExamResponseModel;
 import com.sph.apiexam.service.ExamService;
@@ -40,7 +41,7 @@ public class ExamController {
     }
 
     @GetMapping
-    public List<ExamResponseModel> listAllExam(@RequestParam("groupName") String groupName){
+    public List<ExamEntity> listAllExam(@RequestParam("groupName") String groupName){
         List<ExamDto> examDtoList;
         if(groupName==null){
             examDtoList = examService.listAll();
@@ -48,9 +49,10 @@ public class ExamController {
             examDtoList = examService.listAllByGroupName(groupName);
         }
 
-        Type typeOfExamResponseModelList = new TypeToken<List<ExamResponseModel>>(){}.getType();
+//        Type typeOfExamResponseModelList = new TypeToken<List<ExamResponseModel>>(){}.getType();
+        Type typeOfExamEntityModelList = new TypeToken<List<ExamEntity>>(){}.getType();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setAmbiguityIgnored(true);
-        return modelMapper.map(examDtoList, typeOfExamResponseModelList);
+        return modelMapper.map(examDtoList, typeOfExamEntityModelList);
     }
 }
