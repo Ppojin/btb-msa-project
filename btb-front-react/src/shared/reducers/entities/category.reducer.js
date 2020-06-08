@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { cleanEntity } from 'shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'shared/reducers/action-type.util';
+import dotenv from 'dotenv';
 
 export const ACTION_TYPES = {
   FETCH_CATEGORY_LIST: 'category/FETCH_CATEGORY_LIST',
@@ -67,7 +68,8 @@ export default (state = initialState, action) => {
   }
 };
 
-const apiUrl = 'api/categories';
+dotenv.config();
+const apiUrl = `http://${process.env.REACT_APP_APIHOST}/api-user`;
 
 // Actions
 

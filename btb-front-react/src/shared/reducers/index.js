@@ -6,6 +6,7 @@ import questionEntity from './entities/question-entity.reducer';
 import category from './entities/category.reducer';
 import exam from './entities/exam.reducer';
 import examResult from './entities/exam-result.reducer';
+import auth from './entities/auth.reducer'
 
 const rootReducer = combineReducers({
   customer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   category,
   exam,
   examResult,
+  auth,
 });
 
 export default rootReducer;

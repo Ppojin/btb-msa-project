@@ -6,6 +6,7 @@ import { REQUEST, SUCCESS, FAILURE } from 'shared/reducers/action-type.util';
 // import { applyMiddleware } from 'redux';
 // import thunk from 'redux-thunk';
 
+
 export const ACTION_TYPES = {
   FETCH_CUSTOMER: 'customer/FETCH_CUSTOMER',
   SIGN_IN: 'customer/SIGN_IN',
@@ -97,8 +98,9 @@ export default ((state = initialState, action)=> {
   }
 })
 
-// const apiUrl = 'http://localhost:10000';
-const apiUrl = 'http://localhost:8011/api-user';
+require('dotenv').config()
+const apiUrl = `http://${process.env.REACT_APP_APIHOST}/api-user`;
+
 const signupAPI = (entity => axios.post(`${apiUrl}/signup`, entity))
 const signinAPI = (entity) => axios.post(`${apiUrl}/signin`, entity)
 // const getCustomerAPI = (id, token) => axios.get(`${apiUrl}/v1/users/${id}`, null, {headers: {'Authorization': `Bearer ${token}`,}});

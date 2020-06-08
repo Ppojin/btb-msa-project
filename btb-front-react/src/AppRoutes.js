@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 import Customer from 'container/Customer';
+import Exam from 'container/Exam'
 
 const AppRoutes = () => {
     // return (
@@ -11,6 +12,7 @@ const AppRoutes = () => {
         <div className="containerRoutes">
             <Switch>
                 <Route path="/customer" component={Customer}/>
+                <Route path="/exam" component={Exam}/>
                 {/* <Route path="/" component={} /> */}
             </Switch>
         </div>

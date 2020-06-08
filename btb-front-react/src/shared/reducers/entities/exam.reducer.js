@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { cleanEntity } from 'shared/util/entity-utils';
+// import { cleanEntity } from 'shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'shared/reducers/action-type.util';
 
 export const ACTION_TYPES = {
@@ -76,32 +76,54 @@ export default (state = initialState, action) => {
   }
 };
 
-const apiUrl = 'api-exam/v1/exam';
+require('dotenv').config();
+const apiUrl = `http://${process.env.REACT_APP_APIHOST}/api-exam/v1/exam`;
 
+// API
 // Actions
-
-export const getExamList = () => ({
-  type: ACTION_TYPES.FETCH_EXAM_LIST,
-  payload: axios.get(`${apiUrl}`),
+const getExamListApi = (token, groupName) => axios({
+  method: "get",
+  url: `${apiUrl}`,
+  headers:{
+    'Authorization': `Bearer ${token}`,
+  },
+  params: {
+    groupName: groupName
+  }
 });
-
-export const getExam = id => {
-  const requestUrl = `${apiUrl}/${id}`;
-  return {
-    type: ACTION_TYPES.FETCH_EXAM,
-    payload: axios.get(requestUrl),
-  };
+export const getExamList = (token, groupName = 'default') => dispatch => {
+  dispatch({type: REQUEST(ACTION_TYPES.FETCH_EXAM_LIST)});
+  return getExamListApi(token, groupName).then(response => {
+    dispatch({
+      type: SUCCESS(ACTION_TYPES.FETCH_EXAM_LIST),
+      payload: response,
+    })
+  }).catch(error => {
+    dispatch({
+      type: FAILURE(ACTION_TYPES.FETCH_EXAM_LIST),
+      payload: error
+    })
+  })
 };
 
-export const createExam = entity => async dispatch => {
-  const result = await dispatch({
-    type: ACTION_TYPES.CREATE_EXAM,
-    payload: axios.post(apiUrl, cleanEntity(entity)),
-  });
-  dispatch(getExamList());
-  return result;
-};
-
-export const reset = () => ({
-  type: ACTION_TYPES.RESET,
+const getExamApi = (token, examPK) => axios({
+  method: "get",
+  url: `${apiUrl}/${examPK}`,
+  headers:{
+    'Authorization': `Bearer ${token}`,
+  }
 });
+export const getExam = (token, examPK) => dispatch => {
+  dispatch({type: REQUEST(ACTION_TYPES.FETCH_EXAM)});
+  return getExamApi(token, examPK).then(response => {
+    dispatch({
+      type: SUCCESS(ACTION_TYPES.FETCH_EXAM),
+      payload: response
+    })
+  }).catch(error => {
+    dispatch({
+      type: FAILURE(ACTION_TYPES.FETCH_EXAM),
+      payload: error
+    })
+  })
+};

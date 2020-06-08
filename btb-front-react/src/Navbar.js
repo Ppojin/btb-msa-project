@@ -5,6 +5,7 @@ const Navbar = () => {
     return (
         <div className="Navbar">
             <Link to="/customer">회원/인증</Link>
+            <Link to="/exam">시험 조회</Link>
         </div>
     );
 };
