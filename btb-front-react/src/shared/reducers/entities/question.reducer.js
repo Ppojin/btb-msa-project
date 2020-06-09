@@ -4,10 +4,10 @@ import axios from 'axios';
 import { REQUEST, SUCCESS, FAILURE } from 'shared/reducers/action-type.util';
 
 export const ACTION_TYPES = {
-  FETCH_EXAM_LIST: 'exam/FETCH_EXAM_LIST',
-  FETCH_EXAM: 'exam/FETCH_EXAM',
-  CREATE_EXAM: 'exam/CREATE_EXAM',
-  RESET: 'exam/RESET',
+  FETCH_EXAM_LIST: 'question/FETCH_EXAM_LIST',
+  FETCH_EXAM: 'question/FETCH_EXAM',
+  CREATE_EXAM: 'question/CREATE_EXAM',
+  RESET: 'question/RESET',
 };
 
 const initialState = {
@@ -77,11 +77,11 @@ export default (state = initialState, action) => {
 };
 
 require('dotenv').config();
-const apiUrl = `http://${process.env.REACT_APP_APIHOST}/api-exam/v1/exam`;
+const apiUrl = `http://${process.env.REACT_APP_APIHOST}/api-question/v1/question`;
 
 // API
 // Actions
-const getExamListApi = (token, groupName) => axios({
+const getQuestionListApi = (token, groupName) => axios({
   method: "get",
   url: `${apiUrl}`,
   headers:{
@@ -91,9 +91,9 @@ const getExamListApi = (token, groupName) => axios({
     groupName: groupName
   }
 });
-export const getExamList = (token, groupName = 'default') => dispatch => {
+export const getQuestionList = (token, groupName = 'default') => dispatch => {
   dispatch({type: REQUEST(ACTION_TYPES.FETCH_EXAM_LIST)});
-  return getExamListApi(token, groupName).then(response => {
+  return getQuestionListApi(token, groupName).then(response => {
     dispatch({
       type: SUCCESS(ACTION_TYPES.FETCH_EXAM_LIST),
       payload: response,
@@ -106,16 +106,16 @@ export const getExamList = (token, groupName = 'default') => dispatch => {
   })
 };
 
-const getExamApi = (token, examPK) => axios({
+const getQuestionApi = (token, questionPK) => axios({
   method: "get",
-  url: `${apiUrl}/${examPK}`,
+  url: `${apiUrl}/${questionPK}`,
   headers:{
     'Authorization': `Bearer ${token}`,
   }
 });
-export const getExam = (token, examPK) => dispatch => {
+export const getQuestion = (token, questionPK) => dispatch => {
   dispatch({type: REQUEST(ACTION_TYPES.FETCH_EXAM)});
-  return getExamApi(token, examPK).then(response => {
+  return getQuestionApi(token, questionPK).then(response => {
     dispatch({
       type: SUCCESS(ACTION_TYPES.FETCH_EXAM),
       payload: response
