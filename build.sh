@@ -2,17 +2,18 @@
 cd back-config-springboot
 mvn clean compile package
 ## build
-docker build -t config .
+docker build -t ppojin/
+config .
 
 cd ../back-eureka-springboot
 mvn clean compile package
 ## build
-docker build -t eureka .
+docker build -t ppojin/eureka .
 
 cd ../back-zuul-springboot
 mvn clean compile package
 ## build
-docker build -t zuul .
+docker build -t ppojin/zuul .
 
 cd ../api-user-springboot
 mvn clean compile package
@@ -24,10 +25,10 @@ mvn clean compile package
 ## build
 docker build -t qabank .
 
-cd ../api-exam-springboot
-mvn clean compile package
-## build
-docker build -t exam .
+# cd ../api-exam-springboot
+# mvn clean compile package
+# ## build
+# docker build -t exam .
 
 cd ../api-result-springboot
 mvn clean compile package

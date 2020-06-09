@@ -3,8 +3,10 @@ package com.btb.user.service;
 import com.btb.user.data.UserDto;
 import com.btb.user.data.UserEntity;
 import com.btb.user.data.UserRepository;
+import com.btb.user.data.model.UserResponseModel;
 import com.btb.user.exception.UserNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.User;
@@ -12,7 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -80,5 +84,11 @@ public class UserServiceImpl implements UserService{
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<UserDto> listAll() {
+        Type userDtoListType = new TypeToken<List<UserDto>>(){}.getType();
+        return new ModelMapper().map(repository.listAll(), userDtoListType);
     }
 }

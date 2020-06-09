@@ -59,6 +59,11 @@ public class SignupController {
         UserDto createdDto = userService.createUser(userDto);
         UserCreateResponseModel UserCreateResponseModel = modelMapper.map(createdDto, UserCreateResponseModel.class);
         if(UserCreateResponseModel.getGroupName() == null) UserCreateResponseModel.setGroupName("default");
+
+        //todo: create git user
+        //
+        //==========================================
+
         return ResponseEntity.status(HttpStatus.CREATED).body(UserCreateResponseModel);
     }
     @ApiOperation(value="회원 인증", notes="로그인 api")

@@ -11,7 +11,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class ExamServiceImpl implements ExamService{
     }
 
     private ExamDto examEntityToExamDto(ExamDto examDto) throws RuntimeException{
+        ModelMapper modelMapper = new ModelMapper();
         List<QuestionResponseModel> questionResponseModelList = new ArrayList<>();
         List<UserResponseModel> userResponseModelList = new ArrayList<>();
         examDto.getCustomerPK().forEach(customerPK -> {
@@ -42,6 +45,7 @@ public class ExamServiceImpl implements ExamService{
 
         examDto.getQuestionPK().forEach(questionPK -> {
             QuestionResponseModel question = qaBankServiceClient.readQuestion(questionPK).getBody();
+
             if (question == null) throw new RuntimeException(String.format("question <%s> not existed", question));
             questionResponseModelList.add(question);
         });

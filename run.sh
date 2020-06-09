@@ -12,7 +12,7 @@ docker run -d --name rabbitmq \
 --network my-net \
 rabbitmq:management
 ## export ip
-rabbitmq=$(docker inspect rabbitmq | grep IPAddress | grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" | head -1)
+ppojin/rabbitmq=$(docker inspect rabbitmq | grep IPAddress | grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" | head -1)
 echo "rabbitmq = ${rabbitmq}"
 
 
@@ -89,19 +89,19 @@ docker run --name qabank -d \
 --network my-net \
 qabank
 
+# # exam
+# ## build
+# # docker build -t exam api-exam-springboot/.
+# ## run
+# docker run --name exam -d \
+# -p 30000:30000 \
+# -e "spring.rabbitmq.host=${rabbitmq}" \
+# -e "spring.cloud.config.uri=http://${config}:8012" \
+# -e "eureka.client.service-url.defaultZone=http://${eureka}:8010/eureka" \
+# -e "server.port=30000" \
+# -e "spring.cloud.config.name=docker" \
+# --network my-net \
 # exam
-## build
-# docker build -t exam api-exam-springboot/.
-## run
-docker run --name exam -d \
--p 30000:30000 \
--e "spring.rabbitmq.host=${rabbitmq}" \
--e "spring.cloud.config.uri=http://${config}:8012" \
--e "eureka.client.service-url.defaultZone=http://${eureka}:8010/eureka" \
--e "server.port=30000" \
--e "spring.cloud.config.name=docker" \
---network my-net \
-exam
 
 # result
 ## build

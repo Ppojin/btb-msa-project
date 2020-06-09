@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.lang.reflect.Type;
 import java.util.Enumeration;
+import java.util.List;
 
 @Api(tags = {"1. User"})
 @RestController
@@ -53,9 +56,13 @@ public class UserController {
 
 //    @ApiOperation(value = "계정 확인")
 
-//    @ApiOperation(value = "현재 계정 정보", notes="현재 계정 정보 조회")
-//    @GetMapping
-//    public ResponseEntity<UserResponseModel> getThisUser(HttpServletRequest request){
+    @ApiOperation(value = "유저 리스트", notes="유저 리스트 조회")
+    @GetMapping
+    public ResponseEntity<List<UserResponseModel>> getThisUser(HttpServletRequest request){
+        ModelMapper modelMapper = new ModelMapper();
+        List<UserDto> userDtoList = userService.listAll();
+        Type userResponseModelType = new TypeToken<List<UserResponseModel>>(){}.getType();
+        return modelMapper.map(userDtoList, userResponseModelType);
 //        Enumeration<String> ems = request.getHeaderNames();
 //        while (ems.hasMoreElements()) {
 //            String name = ems.nextElement();
@@ -66,5 +73,5 @@ public class UserController {
 //        UserDto userDto = userService.getUSerDetailsByEmail(new JwtParser(env).getCurrentUserEmail(request));
 //        UserResponseModel userResponseModel = new ModelMapper().map(userDto, UserResponseModel.class);
 //        return ResponseEntity.status(HttpStatus.OK).body(userResponseModel);
-//    }
+    }
 }
