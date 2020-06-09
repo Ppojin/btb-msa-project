@@ -1,3 +1,10 @@
+/ docker-compose up
+config
+eureka
+zull
+user qabank exam result
+
+
 # build
 ```bash
 sudo ./build.sh
