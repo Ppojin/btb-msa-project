@@ -77,7 +77,7 @@ export default (state = initialState, action) => {
 };
 
 require('dotenv').config();
-const apiUrl = `http://${process.env.REACT_APP_APIHOST}/api-question/v1/question`;
+const apiUrl = `http://${process.env.REACT_APP_APIHOST}/api-qabank/v1/questions`;
 
 // API
 // Actions

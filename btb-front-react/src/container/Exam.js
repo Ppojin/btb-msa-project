@@ -1,71 +1,71 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-import {getExamList, getExam} from 'shared/reducers/entities/exam.reducer'
+import {getQuestionList, getQuestion} from 'shared/reducers/entities/question.reducer'
 import {setAuth} from 'shared/reducers/entities/auth.reducer'
 
 // import questionEntity, {getQuestionList, getQuestion, createQuestion} from 'shared/reducers/entities/question-entity.reducer';
 // import category, {getCategoryList, createCategory} from 'shared/reducers/entities/category.reducer';
-// import exam, {getExam, getExamList, createExam} from 'shared/reducers/entities/exam.reducer';
-// import examResult, {getResult, getResultList, createResult} from 'shared/reducers/entities/exam-result.reducer';
+// import question, {getQuestion, getQuestionList, createQuestion} from 'shared/reducers/entities/question.reducer';
+// import questionResult, {getResult, getResultList, createResult} from 'shared/reducers/entities/question-result.reducer';
 
 class App extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      examList: [],
-      examDetail: {}
+      questionList: [],
+      questionDetail: {}
     }
   }
 
   // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   if(prevState.exam !== this.state.exam){
+  //   if(prevState.question !== this.state.question){
   //     this.setState({
-  //       examList: this.state.exam.entities,
-  //       examDetail: this.state.exam.entity,
+  //       questionList: this.state.question.entities,
+  //       questionDetail: this.state.question.entity,
   //     })
   //   }
   // }
 
-  getExamList = () => {
+  getQuestionList = () => {
     const {token} = this.props.auth;
-    this.props.getExamList(token);
+    this.props.getQuestionList(token);
   };
 
-  getExamDetail = (examPK) => {
-    // console.log(">>> "+ examPK);
+  getQuestionDetail = (questionPK) => {
+    // console.log(">>> "+ questionPK);
     const {token} = this.props.auth;
-    this.props.getExam(token, examPK);
+    this.props.getQuestion(token, questionPK);
   };
 
-  examButtons = () => {
-    const examListButtons = this.props.examList.map(examDetail =>
-      <li key={examDetail.examPK}>
-        <button onClick={() => this.getExamDetail(examDetail.examPK)}>
-          {examDetail.title}
+  questionButtons = () => {
+    const questionListButtons = this.props.questionList.map(questionDetail =>
+      <li key={questionDetail.questionPK}>
+        <button onClick={() => this.getQuestionDetail(questionDetail.questionPK)}>
+          {questionDetail.title}
         </button>
       </li>
     );
     return (
       <ul>
-        {examListButtons}
+        {questionListButtons}
       </ul>
     )
   };
 
   render(){
-    // let {examList, examDetail} = this.state;
-    // let {exam, auth} = this.props;
-    const ExamButtons = this.examButtons;
+    // let {questionList, questionDetail} = this.state;
+    // let {question, auth} = this.props;
+    const QuestionButtons = this.questionButtons;
     return (
-      <div className="Exam">
-        <button onClick={this.getExamList}>시험리스트 불러오기</button>
-        <div className="examList">
-          <ExamButtons/>
+      <div className="Question">
+        <button onClick={this.getQuestionList}>시험리스트 불러오기</button>
+        <div className="questionList">
+          <QuestionButtons/>
         </div>
-        <div className="examDetail">
+        <div className="questionDetail">
           <div>
-            {JSON.stringify(this.props.exam)||""}
+            {JSON.stringify(this.props.question)||""}
           </div>
         </div>
       </div>
@@ -73,15 +73,15 @@ class App extends Component{
   }
 }
 
-const mapStateToProps = ({exam, auth}) => ({
-  exam: exam.entity,
-  examList: exam.entities,
+const mapStateToProps = ({question, auth}) => ({
+  question: question.entity,
+  questionList: question.entities,
   auth: auth
 });
 
 const mapDispatchToProps = {
-  getExamList,
-  getExam,
+  getQuestionList,
+  getQuestion,
   setAuth,
 };
 

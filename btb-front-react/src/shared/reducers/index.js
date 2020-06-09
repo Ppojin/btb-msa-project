@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 import customer from './entities/customer.reducer'
 import questionEntity from './entities/question-entity.reducer';
 import category from './entities/category.reducer';
-import exam from './entities/exam.reducer';
+import question from './entities/question.reducer';
 import examResult from './entities/exam-result.reducer';
 import auth from './entities/auth.reducer'
 
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   customer,
   questionEntity,
   category,
-  exam,
+  question,
   examResult,
   auth,
 });
