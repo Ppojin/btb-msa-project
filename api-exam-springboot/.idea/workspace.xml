@@ -2,42 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99b71238-9866-455c-abc1-8f965242bff2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/ApiExamApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/client/FeignErrorDecoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/client/QABankServiceClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/client/UserServiceClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/controller/ExamController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/controller/StatusController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/ExamDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/ExamEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/ExamRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/UserBranch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/model/ExamCreateModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/model/ExamResponseModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/model/QuestionExamResponseModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/model/QuestionResponseModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/entity/model/UserResponseModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/service/ExamService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sph/apiexam/service/ExamServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bootstrap.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/sph/apiexam/ApiExamApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/controller/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/controller/SignupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/data/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/data/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/service/GitlabService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/service/GitlabService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-user-springboot/src/main/java/com/btb/user/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

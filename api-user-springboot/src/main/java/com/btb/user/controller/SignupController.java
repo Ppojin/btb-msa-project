@@ -60,8 +60,8 @@ public class SignupController {
         UserCreateResponseModel UserCreateResponseModel = modelMapper.map(createdDto, UserCreateResponseModel.class);
         if(UserCreateResponseModel.getGroupName() == null) UserCreateResponseModel.setGroupName("default");
 
-        //todo: create git user
-        //
+        //todo: create git use
+        
         //==========================================
 
         return ResponseEntity.status(HttpStatus.CREATED).body(UserCreateResponseModel);

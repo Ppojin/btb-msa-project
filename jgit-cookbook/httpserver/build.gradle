@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'org.dstadler.jgit.server.Main'
+applicationDefaultJvmArgs = ['-Xmx512m', '-XX:+HeapDumpOnOutOfMemoryError']
+version = '1.0'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'A simple HTTP Git server based on the JGit GitServlet', 'Implementation-Version': version
+    }
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+  maven {
+    url "https://repo.eclipse.org/content/groups/releases/"
+  }
+}
+
+dependencies {
+	compile 'org.eclipse.jgit:org.eclipse.jgit.http.server:5.7.0.202003110725-r'
+	compile 'org.eclipse.jetty:jetty-servlet:9.4.29.v20200521'
+
+	compile 'org.slf4j:slf4j-simple:1.7.30'
+}
+
+wrapper {
+    gradleVersion = '5.6.4'
+}
