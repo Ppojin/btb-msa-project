@@ -24,4 +24,7 @@ public class UserCreateModel {
     private Integer gender;
     private String phone;
     private String city;
+
+    private String gitlabToken;
+    private Integer gitlabUserId;
 }

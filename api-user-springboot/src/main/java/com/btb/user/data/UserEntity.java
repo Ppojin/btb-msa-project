@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class UserEntity implements UserDetails {
     @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String customerPK;
+    private String customerPk;
     @Email
     @Column(nullable = false, unique = true)
     private String email;
@@ -48,6 +48,11 @@ public class UserEntity implements UserDetails {
     private String createDate;
     @Column(nullable = false)
     private String encryptedPassword;
+
+    @Column(nullable = false)
+    private String gitlabToken;
+    @Column(nullable = false)
+    private Integer gitlabUserId;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();

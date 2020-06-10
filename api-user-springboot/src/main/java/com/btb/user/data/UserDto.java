@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
-    private String customerPK;
+    private String customerPk;
     private String email;
     private String password;
     private String name;
@@ -18,6 +18,9 @@ public class UserDto {
     private Integer gender;
     private String phone;
     private String city;
+
+    private String gitlabToken;
+    private Integer gitlabUserId;
 
     private String encryptedPassword;
 }

@@ -24,17 +24,21 @@ public class UserServiceImpl implements UserService{
     private UserRepository repository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private Environment env;
+    private GitlabService gitlabService;
 
     @Autowired
-    public UserServiceImpl(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment env) {
+    public UserServiceImpl(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder, Environment env, GitlabService gitlabService) {
         this.repository = repository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.env = env;
+        this.gitlabService = gitlabService;
     }
 
     @Override
     public UserDto createUser(UserDto userDetails) {
-        userDetails.setCustomerPK(UUID.randomUUID().toString());
+        gitlabService.createUser(userDetails);
+        gitlabService.createToken(userDetails);
+        userDetails.setCustomerPk(UUID.randomUUID().toString());
         userDetails.setEncryptedPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
         ModelMapper modelMapper = new ModelMapper();
         UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
@@ -52,8 +56,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDto getUserByCustomerPK(String customerKey) {
-        UserEntity userEntity = repository.findByCustomerPK(customerKey);
+    public UserDto getUserByCustomerPk(String customerKey) {
+        UserEntity userEntity = repository.findByCustomerPk(customerKey);
         if(userEntity == null) throw new UserNotFoundException(customerKey);
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
         return userDto;
@@ -87,8 +91,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<UserDto> listAll() {
+    public List<UserDto> findAll() {
         Type userDtoListType = new TypeToken<List<UserDto>>(){}.getType();
-        return new ModelMapper().map(repository.listAll(), userDtoListType);
+        return new ModelMapper().map(repository.findAll(), userDtoListType);
     }
 }

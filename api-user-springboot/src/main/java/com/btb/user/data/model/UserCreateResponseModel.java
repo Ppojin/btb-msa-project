@@ -11,7 +11,7 @@ import javax.validation.constraints.DecimalMin;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCreateResponseModel {
-    private String customerPK;
+    private String customerPk;
     private String name;
     private String groupName;
     private String email;

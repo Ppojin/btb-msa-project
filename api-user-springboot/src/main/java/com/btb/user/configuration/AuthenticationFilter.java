@@ -63,6 +63,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 //                .signWith(SignatureAlgorithm.HS512, "asdf;lkj")
                 .compact();
         response.addHeader("token", token);
-        response.addHeader("CustomerPK", userDto.getCustomerPK());
+        response.addHeader("CustomerPk", userDto.getCustomerPk());
     }
 }

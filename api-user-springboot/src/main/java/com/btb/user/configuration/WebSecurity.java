@@ -36,7 +36,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 //        http.cors().disable();
         http.authorizeRequests()
-                .antMatchers("/**").permitAll();
+                .antMatchers("/**").permitAll()
+                .and().headers().frameOptions().sameOrigin();
 //                .and()
 //                .cors().disable()
 //                .addFilter(getAuthenticationFilter());
@@ -45,7 +46,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     private AuthenticationFilter getAuthenticationFilter() throws Exception {
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(userService, env, authenticationManager());
-        authenticationFilter.setFilterProcessesUrl("///"+env.getProperty("login.url.path"));
+
+//        authenticationFilter.setFilterProcessesUrl("///"+env.getProperty("login.url.path"));
         return authenticationFilter;
     }
 
@@ -60,7 +62,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 //        configuration.setAllowedOrigins(ImmutableList.of("*"));
 //        configuration.setAllowedMethods(ImmutableList.of("HEAD","GET", "POST", "PUT", "DELETE", "PATCH"));
 //        configuration.setAllowCredentials(true);
-//        configuration.setAllowedHeaders(ImmutableList.of("customerPK", "Authorization", "key", "Cache-Control", "Content-Type"));
+//        configuration.setAllowedHeaders(ImmutableList.of("customerPk", "Authorization", "key", "Cache-Control", "Content-Type"));
 //        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 //        source.registerCorsConfiguration("/**", configuration);
 //        return source;

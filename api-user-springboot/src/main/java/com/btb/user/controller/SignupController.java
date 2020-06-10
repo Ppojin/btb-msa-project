@@ -61,7 +61,7 @@ public class SignupController {
         if(UserCreateResponseModel.getGroupName() == null) UserCreateResponseModel.setGroupName("default");
 
         //todo: create git use
-        
+
         //==========================================
 
         return ResponseEntity.status(HttpStatus.CREATED).body(UserCreateResponseModel);
@@ -88,25 +88,25 @@ public class SignupController {
                     .compact();
 
             MultiValueMap<String, String> header = new LinkedMultiValueMap<>();
-            header.add("customerPK", userDto.getCustomerPK());
+            header.add("customerPk", userDto.getCustomerPk());
             header.add("token", token);
             return new ResponseEntity(header, HttpStatus.OK);
 
 //            // use ResponseEntity
 //            HttpHeaders httpHeaders = new HttpHeaders();
 //            httpHeaders.set("token", token);
-//            httpHeaders.set("CustomerPK", userDto.getCustomerPK());
+//            httpHeaders.set("CustomerPk", userDto.getCustomerPk());
 //            return ResponseEntity.status(HttpStatus.OK).headers(httpHeaders).body(null);
 
 //            // use response
 //            response.addHeader("token", token);
-//            response.addHeader("customerPK", userDto.getCustomerPK());
+//            response.addHeader("customerPk", userDto.getCustomerPk());
 //            return ResponseEntity.status(HttpStatus.OK).body(null);
 
 //            // useBody
 //            Map headerMap = new HashMap();
 //            headerMap.put("token", token);
-//            headerMap.put("customerPK", userDto.getCustomerPK());
+//            headerMap.put("customerPk", userDto.getCustomerPk());
 //            return ResponseEntity.status(HttpStatus.OK).body(headerMap);
         } else {
             throw new RuntimeException("Dose not match user and pwd");

@@ -57,7 +57,7 @@ public class UserApplication {
         config.setAllowedHeaders(Arrays.asList("Authorization", "Accept", "Content-Type", "Origin", "XSRF-TOKEN", "X-XSRF-TOKEN", "X-Requested-With"));
         config.addAllowedMethod("*");
 //        config.addExposedHeader("*");
-        List<String> allowHeaderList = Arrays.asList("customerPK", "token",
+        List<String> allowHeaderList = Arrays.asList("customerPk", "token",
                 "x-xsrf-token", "Origin", "Accept", "Content-Type", "X-Requested-With",
                 "Access-Control-Allow-Method", "Access-Control-Allow-Headers", "Access-Control-Request-Method", "Access-Control-Request-Headers");
         config.setExposedHeaders(allowHeaderList);

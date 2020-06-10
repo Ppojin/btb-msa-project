@@ -45,11 +45,11 @@ public class UserController {
     @ApiOperation(value = "회원 조회", notes="회원조회 api")
     @CrossOrigin(origins = "*")
     @GetMapping(
-            value = "{customerPK}",
+            value = "{customerPk}",
             produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<UserResponseModel> getUser(@PathVariable("customerPK") String customerPK){
-        UserDto userDto = userService.getUserByCustomerPK(customerPK);
+    public ResponseEntity<UserResponseModel> getUser(@PathVariable("customerPk") String customerPk){
+        UserDto userDto = userService.getUserByCustomerPk(customerPk);
         UserResponseModel userResponseModel = new ModelMapper().map(userDto, UserResponseModel.class);
         return ResponseEntity.status(HttpStatus.OK).body(userResponseModel);
     }
@@ -60,7 +60,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserResponseModel>> getThisUser(HttpServletRequest request){
         ModelMapper modelMapper = new ModelMapper();
-        List<UserDto> userDtoList = userService.listAll();
+        List<UserDto> userDtoList = userService.findAll();
         Type userResponseModelType = new TypeToken<List<UserResponseModel>>(){}.getType();
         return modelMapper.map(userDtoList, userResponseModelType);
 //        Enumeration<String> ems = request.getHeaderNames();

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserResponseModel {
-    private String customerPK;
+    private String customerPk;
     private String name;
     private String groupName;
     private String email;
