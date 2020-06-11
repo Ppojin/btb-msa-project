@@ -5,7 +5,7 @@ import com.sph.apiqubank.entity.dto.QuestionDto;
 
 import java.util.List;
 
-public interface questionsService {
+public interface QuestionsService {
     QuestionDto createQuestion(QuestionDto question);
     QuestionDto readQuestion(String questionPK);
     List<QuestionDto> listAllQuestion(String groupName);

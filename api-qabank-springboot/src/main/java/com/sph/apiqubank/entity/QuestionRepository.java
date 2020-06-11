@@ -1,9 +1,6 @@
 package com.sph.apiqubank.entity;
 
-import com.sph.apiqubank.entity.Model.QuestionResponseModel;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +10,6 @@ public interface QuestionRepository extends CrudRepository<QuestionEntity, Strin
     QuestionEntity findByQuestionPK(String questionId);
     QuestionEntity findByTitle(String title);
     List<QuestionEntity> findAll();
-    List<QuestionEntity> findAllByCategoryPK(Integer categoryPK);
     List<QuestionEntity> findAllByGroupName(String groupName);
 
 //    @Query

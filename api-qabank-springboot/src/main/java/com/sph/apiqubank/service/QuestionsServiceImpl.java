@@ -1,33 +1,32 @@
 package com.sph.apiqubank.service;
 
-import com.sph.apiqubank.entity.CategoryRepository;
+import com.sph.apiqubank.client.GitlabClient;
 import com.sph.apiqubank.entity.QuestionEntity;
 import com.sph.apiqubank.entity.QuestionRepository;
 import com.sph.apiqubank.entity.dto.QuestionDto;
+import com.sph.apiqubank.entity.feignmodel.ForkRequestModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
-public class questionsServiceImpl implements questionsService{
+public class QuestionsServiceImpl implements QuestionsService {
     QuestionRepository questionRepository;
-    CategoryRepository categoryRepository;
+    GitlabClient gitlabClient;
+
+    @Autowired
+    public QuestionsServiceImpl(QuestionRepository questionRepository, GitlabClient gitlabClient) {
+        this.questionRepository = questionRepository;
+        this.gitlabClient = gitlabClient;
+    }
 
     private List<QuestionDto> getQuestionDtos(List<QuestionEntity> questionEntityList) {
         Type questionDtoListType = new TypeToken<List<QuestionDto>>(){}.getType();
         List<QuestionDto> questionDtoList = new ModelMapper().map(questionEntityList, questionDtoListType);
-        questionDtoList.forEach(questionDto -> {
-            Map<Long, String> categoryJson = new HashMap<>();
-            for (Long categoryPK : questionDto.getCategoryPK()){
-                categoryJson.put(categoryPK, categoryRepository.findByCategoryPK(categoryPK).getCategoryName());
-            }
-            questionDto.setCategoryJson(categoryJson);
-        });
         return questionDtoList;
     }
 
@@ -37,11 +36,6 @@ public class questionsServiceImpl implements questionsService{
         QuestionEntity questionEntity = modelMapper.map(question, QuestionEntity.class);
         QuestionEntity questionEntityResult = questionRepository.save(questionEntity);
         QuestionDto questionDto = modelMapper.map(questionEntityResult, QuestionDto.class);
-        Map<Long, String> categoryJson = new HashMap<>();
-        for (Long categoryPK : questionDto.getCategoryPK()){
-            categoryJson.put(categoryPK, categoryRepository.findByCategoryPK(categoryPK).getCategoryName());
-        }
-        questionDto.setCategoryJson(categoryJson);
         return questionDto;
     }
 
@@ -49,11 +43,6 @@ public class questionsServiceImpl implements questionsService{
     public QuestionDto readQuestion(String questionPK) {
         QuestionEntity questionEntity = questionRepository.findByQuestionPK(questionPK);
         QuestionDto questionDto = new ModelMapper().map(questionEntity, QuestionDto.class);
-        Map<Long, String> categoryJson = new HashMap<>();
-        for (Long categoryPK : questionDto.getCategoryPK()){
-            categoryJson.put(categoryPK, categoryRepository.findByCategoryPK(categoryPK).getCategoryName());
-        }
-        questionDto.setCategoryJson(categoryJson);
         return questionDto;
     }
 

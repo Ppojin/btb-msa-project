@@ -1,4 +1,4 @@
-package com.sph.apiqubank.controller;
+package com.btb.apiresult.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -17,6 +17,6 @@ public class StatusController {
 
     @GetMapping("status")
     public String status(){
-        return String.format("[api-question] Working on port=%s, secret=%s", env.getProperty("local.server.port"), env.getProperty("token.secret"));
+        return String.format("[api-result] Working on port=%s, secret=%s", env.getProperty("local.server.port"), env.getProperty("token.secret"));
     }
 }

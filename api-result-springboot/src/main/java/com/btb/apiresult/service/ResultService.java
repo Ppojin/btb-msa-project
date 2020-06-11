@@ -9,5 +9,5 @@ public interface ResultService {
     ResultDto createResult(ResultDto resultDto);
     List<ResultDto> listAll();
 //    List<ResultDto> listAllByCustomerPK(String customerPK);
-//    List<ResultDto> listAllByExamPKAndCustomerPK(String examPK, String customerPK);
+//    List<ResultDto> listAllByQuestionPKAndCustomerPK(String QuestionPK, String customerPK);
 }

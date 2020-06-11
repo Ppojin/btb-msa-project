@@ -21,10 +21,10 @@ public class ResultEntity {
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String examResultPK;
+    private String questionResultPK;
     @NotNull
     @Column
-    private String examPK;
+    private String questionPK;
     @NotNull
     @Column
     private String customerPK;

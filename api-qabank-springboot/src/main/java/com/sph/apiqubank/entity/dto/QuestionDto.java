@@ -13,9 +13,8 @@ public class QuestionDto {
     private String title;
     private String contents;
     private String gitUrl;
+    private Integer gitRepositoryId;
     private String groupName;
 
-    private List<Long> categoryPK;
-    private Map<Long, String> categoryJson;
     private List<String> testMethod;
 }

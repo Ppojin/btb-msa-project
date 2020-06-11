@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResultDto {
-    private String examResultPK;
-    private String examPK;
+    private String questionResultPK;
+    private String questionPK;
     private String groupName;
     private String customerPK;
     private String createDate;

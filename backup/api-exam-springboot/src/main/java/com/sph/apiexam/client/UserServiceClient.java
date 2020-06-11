@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "api-user")//, fallback = QABankFallback.class)
 public interface UserServiceClient {
-    @GetMapping(value = "/v1/users/{customerPK}")
+    @GetMapping("/v1/users/{customerPK}")
     ResponseEntity<UserResponseModel> getUser(@PathVariable("customerPK") String customerPK);
 }
 

@@ -19,16 +19,14 @@ import javax.validation.constraints.NotNull;
 @DynamicInsert
 @DynamicUpdate
 public class TestCaseResultEntity {
-    @Id @GeneratedValue(generator="system-uuid")
+    @Id
+    @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String testCasePK;
 
     @NotNull
     @Column
-    private String examResultPK;
-    @NotNull
-    @Column
-    private String questionPK;
+    private String questionResultPK;
     @NotNull
     @Column
     private String testCaseMethod;

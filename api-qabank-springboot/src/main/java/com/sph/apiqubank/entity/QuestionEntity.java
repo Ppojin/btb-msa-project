@@ -26,11 +26,11 @@ public class QuestionEntity {
     private String gitUrl;
     @Column(nullable = false, columnDefinition = "varchar(255) DEFAULT 'default'")
     private String groupName;
+    @Column(nullable = false)
+    private Integer gitRepositoryId;
     @Column(nullable = true, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private String createDate;
 
-    @ElementCollection
-    private List<Long> categoryPK;
     @ElementCollection
     private List<String> testMethod;
 }

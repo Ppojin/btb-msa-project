@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99b71238-9866-455c-abc1-8f965242bff2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/client/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/Model/QuestionListResponseModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/client/GitlabClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/client/GitlabClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/controller/CategoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/CategoryEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/CategoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/Model/CategoryCreateModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/Model/CategoryResponseModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/Model/QuestionCreateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/Model/QuestionCreateModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/Model/QuestionResponseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/Model/QuestionResponseModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/QuestionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/QuestionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/QuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/QuestionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/dto/QuestionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/entity/dto/QuestionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/service/questionsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/service/questionsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/test/java/com/sph/apiqubank/entity/QuestionRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/test/java/com/sph/apiqubank/service/questionsServiceImplTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +95,7 @@
       <workItem from="1590811893492" duration="6699000" />
       <workItem from="1590948149379" duration="3253000" />
       <workItem from="1591576180559" duration="9586000" />
+      <workItem from="1591774760937" duration="9000" />
     </task>
     <servers />
   </component>

@@ -9,5 +9,5 @@ import java.util.List;
 public interface TestCaseResultRepository extends CrudRepository<TestCaseResultEntity, String> {
     TestCaseResultEntity findByTestCasePK(String testCasePK);
     List<TestCaseResultEntity> findAll();
-    List<TestCaseResultEntity> findAllByExamResultPK(String ExamResultesultPK);
+    List<TestCaseResultEntity> findAllByQuestionResultPK(String questionResultesultPK);
 }

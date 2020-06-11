@@ -5,7 +5,7 @@ docker network create my-net
 
 #rabbitmq
 docker run -d --name rabbitmq \
--p 9090:15672 -p 5672:5672 -p 15671:15671 -p 5671:5671 -p 4369:4369 \
+-p 9999:15672 -p 5672:5672 -p 15671:15671 -p 5671:5671 -p 4369:4369 \
 --restart=unless-stopped \
 -e RABBITMQ_DEFAULT_USER=admin \
 -e RABBITMQ_DEFAULT_PASS=admin \

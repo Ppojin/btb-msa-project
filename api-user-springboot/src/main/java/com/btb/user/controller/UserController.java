@@ -54,6 +54,17 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userResponseModel);
     }
 
+    @ApiOperation(value = "토큰 조회", notes="저장된 토큰 조회")
+    @CrossOrigin(origins = "*")
+    @GetMapping(
+            value = "{customerPk}/token",
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public ResponseEntity<String> getToken(@PathVariable("customerPk") String customerPk){
+        UserDto userDto = userService.getUserByCustomerPk(customerPk);
+        return ResponseEntity.status(HttpStatus.OK).body(userDto.getGitlabToken());
+    }
+
 //    @ApiOperation(value = "계정 확인")
 
     @ApiOperation(value = "유저 리스트", notes="유저 리스트 조회")

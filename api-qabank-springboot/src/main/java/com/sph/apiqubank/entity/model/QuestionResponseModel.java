@@ -1,11 +1,8 @@
-package com.sph.apiqubank.entity.Model;
+package com.sph.apiqubank.entity.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
-import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +14,5 @@ public class QuestionResponseModel {
     private String gitUrl;
     private String groupName;
 
-    private Map<Long, String> categoryJson;
-    private List<String> testMethod;
+//    private List<String> testMethod;
 }

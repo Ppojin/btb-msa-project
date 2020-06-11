@@ -7,8 +7,8 @@ import java.util.List;
 
 @Repository
 public interface ResultRepository extends CrudRepository<ResultEntity, String> {
-    ResultEntity findByExamResultPK(String examResultPK);
+    ResultEntity findByQuestionResultPK(String questionResultPK);
     List<ResultEntity> findAll();
     List<ResultEntity> findAllByCustomerPK(String customerPK);
-    List<ResultEntity> findAllByExamPKAndCustomerPK(String examPK, String customerPK);
+    List<ResultEntity> findAllByQuestionPKAndCustomerPK(String questionPK, String customerPK);
 }
