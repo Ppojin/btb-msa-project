@@ -29,7 +29,7 @@ docker build -t ppojin/qabank .
 # ## build
 # docker build -t ppojin/exam .
 
-# cd ../api-result-springboot
-# mvn clean compile package
-# ## build
-# docker build -t ppojin/result .
+cd ../api-result-springboot
+mvn clean compile package
+## build
+docker build -t ppojin/result .

@@ -17,6 +17,7 @@ public class ResultDto {
     private String groupName;
     private String customerPK;
     private String createDate;
+    private String gitUrl;
     private List<TestCaseResultCreateModel> testCaseResultCreateList;
     private List<TestCaseResultResponseModel> testCaseResultResponseList;
 }

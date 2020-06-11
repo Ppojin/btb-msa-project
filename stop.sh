@@ -9,8 +9,6 @@
 # docker stop exam
 # docker stop result
 
-docker rm rabbitmq -f
-docker rm zipkin -f
 docker rm config -f
 docker rm eureka -f
 docker rm zuul -f

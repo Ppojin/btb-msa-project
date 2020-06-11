@@ -4,7 +4,6 @@ import com.sph.apiqubank.client.GitlabClient;
 import com.sph.apiqubank.entity.QuestionEntity;
 import com.sph.apiqubank.entity.QuestionRepository;
 import com.sph.apiqubank.entity.dto.QuestionDto;
-import com.sph.apiqubank.entity.feignmodel.ForkRequestModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;

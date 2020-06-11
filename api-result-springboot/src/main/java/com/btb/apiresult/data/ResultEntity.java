@@ -22,15 +22,18 @@ public class ResultEntity {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String questionResultPK;
-    @NotNull
+    @NotNull(message = "questionPK 가 없습니다")
     @Column
     private String questionPK;
-    @NotNull
+    @NotNull(message = "customerPK 가 없습니다")
     @Column
     private String customerPK;
-    @NotNull
+    @NotNull(message = "groupName 가 없습니다")
     @Column(columnDefinition="varchar(255) default 'default'")
     private String groupName;
+    @NotNull(message = "gitUrl 가 없습니다")
+    @Column
+    private String gitUrl;
     @Column(nullable = true, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private String createDate;
 }

@@ -2,18 +2,18 @@ package com.sph.apiqubank.controller;
 
 import com.sph.apiqubank.client.CustomerClient;
 import com.sph.apiqubank.client.GitlabClient;
-import com.sph.apiqubank.entity.feignmodel.ForkRequestModel;
-import com.sph.apiqubank.entity.feignmodel.ForkResponseModel;
+import com.sph.apiqubank.client.ResultClient;
+import com.sph.apiqubank.entity.feignmodel.*;
 import com.sph.apiqubank.entity.model.QuestionCreateModel;
 import com.sph.apiqubank.entity.model.QuestionListResponseModel;
 import com.sph.apiqubank.entity.model.QuestionResponseModel;
-import com.sph.apiqubank.entity.feignmodel.UserResponseModel;
 import com.sph.apiqubank.entity.QuestionEntity;
 import com.sph.apiqubank.entity.QuestionRepository;
 import com.sph.apiqubank.entity.dto.QuestionDto;
 import com.sph.apiqubank.service.QuestionsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,26 +24,30 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Api(tags = {"1. Questions"})
 @RestController
+@Slf4j
 @RequestMapping("/v1/questions")
 public class QuestionController {
     private Environment env;
     private QuestionRepository questionRepository;
-    private final QuestionsService questionsService;
+    private QuestionsService questionsService;
     private CustomerClient customerClient;
-    private final GitlabClient gitlabClient;
+    private GitlabClient gitlabClient;
+    private ResultClient resultClient;
 
     @Autowired
-    public QuestionController(Environment env, QuestionRepository questionRepository, CustomerClient customerClient, QuestionsService questionsService, GitlabClient gitlabClient) {
+    public QuestionController(Environment env, QuestionRepository questionRepository, CustomerClient customerClient, QuestionsService questionsService, GitlabClient gitlabClient, ResultClient resultClient) {
         this.env = env;
         this.questionRepository = questionRepository;
         this.customerClient = customerClient;
         this.questionsService = questionsService;
         this.gitlabClient = gitlabClient;
+        this.resultClient = resultClient;
     }
 
     @ApiOperation(value="문제 등록")
@@ -87,17 +91,41 @@ public class QuestionController {
 //        if(customerToken.getStatusCode() == HttpStatus.OK){
             QuestionEntity questionEntity = questionRepository.findByQuestionPK(questionPK);
             String uuid = UUID.randomUUID().toString();
-            ForkResponseModel forkResponseModel = gitlabClient.forkQuestion(
-                    new ForkRequestModel(uuid),
+
+            // fork repository
+            log.info(">>> fork repository");
+            GitlabForkResponseModel gitlabForkResponseModel = gitlabClient.forkQuestion(
+                    new GitlabForkRequestModel(uuid),
                     questionEntity.getGitRepositoryId(),
                     customerClient.getToken(customerPK).getBody()
             );
-            QuestionDto questionDto = new ModelMapper().map(questionEntity, QuestionDto.class);
             String resultGitUrl = String.format("http://gitlab.ppojin.com/%s/%s.git", customer.getBody().getName(), uuid);
+            log.info(gitlabForkResponseModel.toString());
 
+            // create result
+            log.info(">>> create result");
+            QuestionResultCreateModel questionResultCreateModel = new QuestionResultCreateModel();
+            questionResultCreateModel.setQuestionPK(questionPK);
+            questionResultCreateModel.setGroupName(customer.getBody().getGroupName());
+            questionResultCreateModel.setCustomerPK(customerPK);
+            questionResultCreateModel.setGitUrl(resultGitUrl);
+            List<TestCaseResultCreateModel> testCaseResultCreateModelList = new ArrayList<>();
+            for(String testMethod : questionEntity.getTestMethod()){
+                TestCaseResultCreateModel testCaseResultCreateModel = new TestCaseResultCreateModel();
+                testCaseResultCreateModel.setTestCaseMethod(testMethod);
+                testCaseResultCreateModelList.add(testCaseResultCreateModel);
+            }
+            questionResultCreateModel.setTestCaseResultCreateList(testCaseResultCreateModelList);
+            ResponseEntity<QuestionResultResponseModel> result = resultClient.createResult(questionResultCreateModel);
+            log.info(result.toString());
+
+            // return 전 데이터 정렬
+            QuestionDto questionDto = new ModelMapper().map(questionEntity, QuestionDto.class);
             questionDto.setGitUrl(resultGitUrl);
             QuestionResponseModel questionResponseModel = new ModelMapper().map(questionDto, QuestionResponseModel.class);
+            questionResponseModel.setQuestionResultPK(result.getBody().getQuestionResultPK());
             return ResponseEntity.status(HttpStatus.OK).body(questionResponseModel);
+
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }

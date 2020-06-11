@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ForkResponseModel {
-    private Integer id;
-    private String http_url_to_repo;
+public class TestCaseResultCreateModel {
+    private String questionPK;
+    private String questionResultPK;
+    private String testCaseMethod;
+    private Boolean earned;
 }

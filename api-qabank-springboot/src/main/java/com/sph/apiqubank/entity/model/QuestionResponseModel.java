@@ -13,6 +13,7 @@ public class QuestionResponseModel {
     private String contents;
     private String gitUrl;
     private String groupName;
+    private String questionResultPK;
 
 //    private List<String> testMethod;
 }

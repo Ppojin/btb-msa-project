@@ -1,4 +1,4 @@
-package com.btb.apiresult.data.model;
+package com.sph.apiqubank.entity.feignmodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

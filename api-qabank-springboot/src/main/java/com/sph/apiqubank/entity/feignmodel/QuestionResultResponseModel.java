@@ -1,11 +1,9 @@
-package com.btb.apiresult.data.model;
+package com.sph.apiqubank.entity.feignmodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data

@@ -30,7 +30,7 @@ public class TestCaseResultEntity {
     @NotNull
     @Column
     private String testCaseMethod;
-    @NotNull
+//    @NotNull
     @Column
     private Boolean earned;
 }

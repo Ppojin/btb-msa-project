@@ -13,13 +13,17 @@ import java.util.List;
 
 @Service
 public class ResultServiceImpl implements ResultService{
-    @Autowired
     ResultRepository resultRepository;
-    @Autowired
     TestCaseResultRepository testCaseResultRepository;
+    @Autowired
+    public ResultServiceImpl(ResultRepository resultRepository, TestCaseResultRepository testCaseResultRepository) {
+        this.resultRepository = resultRepository;
+        this.testCaseResultRepository = testCaseResultRepository;
+    }
 
     @Override
     public ResultDto createResult(ResultDto resultDto) {
+
         ModelMapper modelMapper = new ModelMapper();
         ResultEntity resultEntity = modelMapper.map(resultDto, ResultEntity.class);
         ResultEntity savedResultEntity = resultRepository.save(resultEntity);
@@ -38,6 +42,17 @@ public class ResultServiceImpl implements ResultService{
     }
 
     @Override
+    public ResultDto getResult(String questionResultPK) {
+        ModelMapper modelMapper = new ModelMapper();
+        ResultEntity resultEntity = resultRepository.findByQuestionResultPK(questionResultPK);
+        if(resultEntity == null){
+            throw new RuntimeException("resultEntity가 없습니다");
+        }
+        ResultDto resultDto = modelMapper.map(resultEntity, ResultDto.class);
+        return resultDto;
+    }
+
+    @Override
     public List<ResultDto> listAll() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setAmbiguityIgnored(true);
@@ -52,6 +67,8 @@ public class ResultServiceImpl implements ResultService{
         });
         return resultDtoList;
     }
+
+
 
 //    @Override
 //    public List<ResultDto> listAllByCustomerPK(String customerPK) {
