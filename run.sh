@@ -29,7 +29,7 @@ echo "zipkin = ${zipkin}"
 docker run -d --name config -p 8012:8012 \
 -e "spring.rabbitmq.host=${rabbitmq}" \
 --network my-net \
-config
+ppojin/config
 ## export ip
 config=$(docker inspect config | grep IPAddress | grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" | head -1)
 echo "config = ${config}"
@@ -44,7 +44,7 @@ docker run -d --name eureka -p 8010:8010 \
 -e "eureka.client.service-url.defaultZone=http://localhost:8010/eureka" \
 -e "spring.cloud.config.uri=http://${config}:8012" \
 --network my-net \
-eureka
+ppojin/eureka
 ## export ip
 eureka=$(docker inspect eureka | grep IPAddress | grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" | head -1)
 echo "eureka = ${eureka}"
@@ -59,7 +59,7 @@ docker run -d --name zuul -p 8011:8011 \
 -e "eureka.client.service-url.defaultZone=http://${eureka}:8010/eureka" \
 -e "spring.cloud.config.name=docker" \
 --network my-net \
-zuul
+ppojin/zuul
 
 # user
 ## build
@@ -73,7 +73,7 @@ docker run --name user -d \
 -e "server.port=10000" \
 -e "spring.cloud.config.name=docker" \
 --network my-net \
-user
+ppojin/user
 
 # qabank
 ## build
@@ -87,7 +87,7 @@ docker run --name qabank -d \
 -e "server.port=20000" \
 -e "spring.cloud.config.name=docker" \
 --network my-net \
-qabank
+ppojin/qabank
 
 # # exam
 # ## build
@@ -101,7 +101,7 @@ qabank
 # -e "server.port=30000" \
 # -e "spring.cloud.config.name=docker" \
 # --network my-net \
-# exam
+# ppojin/exam
 
 # result
 ## build
@@ -115,7 +115,7 @@ qabank
 # -e "server.port=40000" \
 # -e "spring.cloud.config.name=docker" \
 # --network my-net \
-# result
+# ppojin/result
 
 echo "config = ${config}"
 echo "eureka = ${eureka}"
