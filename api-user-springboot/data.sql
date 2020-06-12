@@ -1,1 +1,0 @@
-insert into CUSTOMERS (CUSTOMER_PK, EMAIL, ENCRYPTED_PASSWORD, GITLAB_TOKEN, GITLAB_USER_ID, GROUP_NAME, NAME) values('ff808081729ccfc501729ccffe900000', 'qwer@qwer.qwer', '$2a$10$M7xMpYIu19UzuN7CrmSHnuP3qu1kv6xxUE8iJPot14.qy5ZIWsoNe', 'cywa_uKZsDkkeuZWu_zE', 13, 'default', 'qwer')

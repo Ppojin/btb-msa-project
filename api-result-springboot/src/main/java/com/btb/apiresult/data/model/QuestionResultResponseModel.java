@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,7 +17,8 @@ public class QuestionResultResponseModel {
     private String questionPK;
     private String groupName;
     private String customerPK;
-    private String createDate;
-    private String gitUrl;
+    private Date createDate;
+    private Integer done;
+    private Date doneDate;
     private List<TestCaseResultResponseModel> testCaseResultResponseList;
 }

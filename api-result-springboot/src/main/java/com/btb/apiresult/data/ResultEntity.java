@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -34,6 +35,10 @@ public class ResultEntity {
     @NotNull(message = "gitUrl 가 없습니다")
     @Column
     private String gitUrl;
+    @Column(nullable = true, columnDefinition = "int(2) DEFAULT 0")
+    private Integer done;
+    @Column(nullable = true)
+    private Integer doneDate;
     @Column(nullable = true, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private String createDate;
+    private Date createDate;
 }

@@ -33,7 +33,16 @@ public class ResultController {
     )
     public ResponseEntity<QuestionResultResponseModel> createResult(@RequestBody QuestionResultCreateModel questionResultCreateModel){
         ModelMapper modelMapper = new ModelMapper();
-        ResultDto resultDto = modelMapper.map(questionResultCreateModel, ResultDto.class);
+        //====================================mapping
+//        ResultDto resultDto = modelMapper.map(questionResultCreateModel, ResultDto.class);
+        ResultDto resultDto = new ResultDto();
+        resultDto.setQuestionPK(questionResultCreateModel.getQuestionPK());
+        resultDto.setGroupName(questionResultCreateModel.getGroupName());
+        resultDto.setCustomerPK(questionResultCreateModel.getCustomerPK());
+        resultDto.setGitUrl(questionResultCreateModel.getGitUrl());
+        resultDto.setTestCaseResultCreateList(questionResultCreateModel.getTestCaseResultCreateList());
+        //==========================================
+
         ResultDto resultServiceResult = resultService.createResult(resultDto);
         QuestionResultResponseModel questionResultResponseModel = modelMapper.map(resultServiceResult, QuestionResultResponseModel.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(questionResultResponseModel);
@@ -46,6 +55,8 @@ public class ResultController {
         QuestionResultResponseModel questionResultResponseModel = modelMapper.map(resultDto, QuestionResultResponseModel.class);
         return ResponseEntity.status(HttpStatus.OK).body(questionResultResponseModel);
     }
+
+    @GetMapping("{question}")
 
     @GetMapping
     public ResponseEntity<List<QuestionResultResponseModel>> listAllResult(
