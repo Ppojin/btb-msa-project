@@ -56,7 +56,7 @@ public class ResultController {
         return ResponseEntity.status(HttpStatus.OK).body(questionResultResponseModel);
     }
 
-    @GetMapping("{question}")
+//    @GetMapping("{question}")
 
     @GetMapping
     public ResponseEntity<List<QuestionResultResponseModel>> listAllResult(
