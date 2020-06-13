@@ -2,7 +2,7 @@ version: '3.1'
 
 services:    
     config:
-        build: ./back-config-springboot
+        image: ppojin/config
         ports: 
             - 8012:8012
         networks: 

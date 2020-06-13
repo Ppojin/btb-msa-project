@@ -2,7 +2,7 @@ version: '3.1'
 
 services:    
     zuul:
-        build: ./back-zuul-springboot
+        image: ppojin/zuul
         ports: 
             - 8011:8011
         networks: 
@@ -15,7 +15,7 @@ services:
             - spring.cloud.config.name=docker
 
     eureka:
-        build: ./back-eureka-springboot
+        image: ppojin/eureka
         ports: 
             - 8010:8010
         networks: 
