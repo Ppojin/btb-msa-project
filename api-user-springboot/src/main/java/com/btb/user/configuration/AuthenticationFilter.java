@@ -19,10 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private UserService userService;
@@ -58,7 +55,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .setSubject(userDto.getEmail())
                 .setHeader(map)
 //                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(env.getProperty("token.expiration_time"))))
-                .setExpiration(new Date(System.currentTimeMillis() + (3600*1000*24)))
+                .setExpiration(new Date(System.currentTimeMillis() + Integer.parseInt(Objects.requireNonNull(env.getProperty("token.time")))))
                 .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))
 //                .signWith(SignatureAlgorithm.HS512, "asdf;lkj")
                 .compact();
