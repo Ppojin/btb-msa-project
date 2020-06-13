@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b99b4f97-83db-4b3c-9ef8-5856b3cbb593" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/client/CustomerClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/feignmodel/GitlabForkRequestModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/feignmodel/GitlabForkResponseModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/feignmodel/UserResponseModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../core/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../docker-compose-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../docker-compose-config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../docker-compose-msaback.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-qabank-springboot/src/main/java/com/sph/apiqubank/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-result-springboot/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../api-result-springboot/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/controller/ResultController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/controller/StatusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/controller/StatusController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/ResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/ResultDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/model/QuestionResultCreateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/model/QuestionResultCreateModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/model/QuestionResultResponseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-result-springboot/src/main/java/com/btb/apiresult/data/model/QuestionResultResponseModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../core/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../core/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../core/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../core/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose copy.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker_builder_container/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../docker_builder_container/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../run.sh" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1dFbnDzq7LhhJd5vvFJSe0g64GR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b99b4f97-83db-4b3c-9ef8-5856b3cbb593" name="Default Changelist" comment="" />
+      <created>1592023952132</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592023952132</updated>
+      <workItem from="1592023953410" duration="3000" />
+    </task>
+    <servers />
+  </component>
+</project>

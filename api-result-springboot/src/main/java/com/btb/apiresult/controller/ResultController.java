@@ -1,6 +1,8 @@
 package com.btb.apiresult.controller;
 
+//import com.btb.apiresult.client.CustomerClient;
 import com.btb.apiresult.data.ResultDto;
+import com.btb.apiresult.data.feignmodel.UserResponseModel;
 import com.btb.apiresult.data.model.QuestionResultCreateModel;
 import com.btb.apiresult.data.model.QuestionResultResponseModel;
 import com.btb.apiresult.service.ResultService;
@@ -21,9 +23,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/v1/result")
 public class ResultController {
     ResultService resultService;
+//    CustomerClient customerClient;
     @Autowired
     public ResultController(ResultService resultService) {
         this.resultService = resultService;
+//        this.customerClient = customerClient;
     }
 
     @PostMapping(
@@ -96,24 +100,40 @@ public class ResultController {
             @PathVariable("customerPK") String customerPK
     ){
 //        String dockerRunCommand = "docker run --name "+questionResultPK+" -v /.m2:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2 -e USER=qwer -e REPO="+questionResultPK+" ppojin/tester";
-        String dockerRunCommand = "docker run --name "+questionResultPK+" -e MAVEN_CONFIG=/var/maven/.m2 -e USER=qwer -e REPO=0963e10c-780e-4546-a12b-730378712459 ppojin/tester";
-        String dockerRemoveCommand = "docker rm -f "+questionResultPK;
-        System.out.println(dockerRunCommand);
+//        String dockerRunCommand = "docker run --name "+questionResultPK+" -e MAVEN_CONFIG=/var/maven/.m2 -e USER=qwer -e REPO=0963e10c-780e-4546-a12b-730378712459 ppojin/tester";
+//        String dockerRemoveCommand = "docker rm -f "+questionResultPK;
 
-        try {
-            Runtime rt = Runtime.getRuntime();
-            Process proc = rt.exec(dockerRunCommand);
-            // any error message?
+        String cmdGitClone = String.format(
+                "git clone http://gitlab.ppojin.com/%s/%s.git",
+//                customerClient.getUser(questionResultPK).getBody().getName(),
+                "qwer",
+                questionResultPK
+        );
+        String cmdCd = String.format("cd %s",questionResultPK);
+        String cmdMavenTest = "mvn test";
+        String cmdCdOut = "cd ..";
+        String rmGit = String.format("rm -rf %s", questionResultPK);
+
+        Runtime rt = Runtime.getRuntime();
+        System.out.println();
+        try{
+            Process proc = rt.exec(cmdGitClone);
             StreamGobbler errorGobbler = new StreamGobbler(proc.getErrorStream(), "ERROR");
-
-            // any output?
             StreamGobbler outputGobbler = new StreamGobbler(proc.getInputStream(), "OUTPUT");
-
-            // kick them off
             errorGobbler.start();
             outputGobbler.start();
+            int exitVal = proc.waitFor();
+            System.out.println("ExitValue: " + exitVal);
+        } catch (Throwable t){
+            t.printStackTrace();
+        }
 
-            // any error???
+        try {
+            Process proc = rt.exec(String.format("%s ; %s", cmdCd, cmdMavenTest));
+            StreamGobbler errorGobbler = new StreamGobbler(proc.getErrorStream(), "ERROR");
+            StreamGobbler outputGobbler = new StreamGobbler(proc.getInputStream(), "OUTPUT");
+            errorGobbler.start();
+            outputGobbler.start();
             int exitVal = proc.waitFor();
             System.out.println("ExitValue: " + exitVal);
         } catch (Throwable t) {

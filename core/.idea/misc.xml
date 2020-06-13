@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/../api-user-springboot/pom.xml" />
         <option value="$PROJECT_DIR$/../api-qabank-springboot/pom.xml" />
         <option value="$PROJECT_DIR$/../api-result-springboot/pom.xml" />
+        <option value="$PROJECT_DIR$/../api-result-springboot-fix/pom.xml" />
       </list>
     </option>
   </component>

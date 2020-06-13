@@ -17,6 +17,7 @@ public class QuestionResultResponseModel {
     private String questionPK;
     private String groupName;
     private String customerPK;
+    private String gitUrl;
     private Date createDate;
     private Integer done;
     private Date doneDate;

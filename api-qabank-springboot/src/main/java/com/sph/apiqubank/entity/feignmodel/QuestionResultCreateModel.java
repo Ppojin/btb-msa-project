@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 public class QuestionResultCreateModel {
+    private String questionResultPK;
     private String questionPK;
     private String groupName;
     private String customerPK;

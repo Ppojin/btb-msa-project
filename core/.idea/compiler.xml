@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -9,6 +10,7 @@
         <module name="core" />
         <module name="user" />
         <module name="api-qubank" />
+        <module name="apiresult" />
         <module name="api-result" />
       </profile>
     </annotationProcessing>
@@ -17,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-qubank" options="-parameters" />
       <module name="api-result" options="-parameters" />
+      <module name="apiresult" options="-parameters" />
       <module name="user" options="-parameters" />
     </option>
   </component>

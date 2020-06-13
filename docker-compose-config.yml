@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:    
+    config:
+        build: ./back-config-springboot
+        ports: 
+            - 8012:8012
+        networks: 
+            - "msa"
+        restart: unless-stopped
+        environment: 
+            - spring.rabbitmq.host=rabbitmq
+        depends_on: 
+            - rabbitmq
+        
+    rabbitmq:
+        image: rabbitmq:management
+        ports:
+            - 5672:5672
+            - 9090:15672
+        environment: 
+            RABBITMQ_DEFAULT_USER: admin
+            RABBITMQ_DEFAULT_PASS: admin
+        restart: unless-stopped
+        networks: 
+            - "msa"
+    
+    zipkin:
+        image: openzipkin/zipkin
+        ports:
+            - 9411:9411
+        networks: 
+            - "msa"
+        restart: unless-stopped
+networks: 
+    msa:

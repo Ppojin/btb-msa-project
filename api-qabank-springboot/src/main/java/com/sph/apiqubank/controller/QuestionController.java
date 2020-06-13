@@ -61,10 +61,11 @@ public class QuestionController {
         QuestionEntity createdQuestionEntity = questionRepository.save(questionEntity);
         QuestionDto questionDto = modelMapper.map(createdQuestionEntity, QuestionDto.class);
         QuestionResponseModel questionResponseModel = modelMapper.map(questionDto, QuestionResponseModel.class);
+
         return ResponseEntity.status(HttpStatus.OK).body(questionResponseModel);
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<QuestionListResponseModel>> listAllQuestion(@RequestParam String groupName){
         ModelMapper modelMapper = new ModelMapper();
         List<QuestionEntity> questionEntityList;
@@ -90,21 +91,14 @@ public class QuestionController {
         if (customer.getStatusCode() == HttpStatus.OK){
 //        if(customerToken.getStatusCode() == HttpStatus.OK){
             QuestionEntity questionEntity = questionRepository.findByQuestionPK(questionPK);
-            String uuid = UUID.randomUUID().toString();
+            String uuid = UUID.randomUUID().toString().replace("-", "");
 
-            // fork repository
-            log.info(">>> fork repository");
-            GitlabForkResponseModel gitlabForkResponseModel = gitlabClient.forkQuestion(
-                    new GitlabForkRequestModel(uuid),
-                    questionEntity.getGitRepositoryId(),
-                    customerClient.getToken(customerPK).getBody()
-            );
             String resultGitUrl = String.format("http://gitlab.ppojin.com/%s/%s.git", customer.getBody().getName(), uuid);
-            log.info(gitlabForkResponseModel.toString());
 
             // create result
             log.info(">>> create result");
             QuestionResultCreateModel questionResultCreateModel = new QuestionResultCreateModel();
+            questionResultCreateModel.setQuestionResultPK(uuid);
             questionResultCreateModel.setQuestionPK(questionPK);
             questionResultCreateModel.setGroupName(customer.getBody().getGroupName());
             questionResultCreateModel.setCustomerPK(customerPK);
@@ -118,6 +112,15 @@ public class QuestionController {
             questionResultCreateModel.setTestCaseResultCreateList(testCaseResultCreateModelList);
             ResponseEntity<QuestionResultResponseModel> result = resultClient.createResult(questionResultCreateModel);
             log.info(result.toString());
+
+            // fork repository
+            log.info(">>> fork repository");
+            GitlabForkResponseModel gitlabForkResponseModel = gitlabClient.forkQuestion(
+                    new GitlabForkRequestModel(uuid),
+                    questionEntity.getGitRepositoryId(),
+                    customerClient.getToken(customerPK).getBody()
+            );
+            log.info(gitlabForkResponseModel.toString());
 
             // return 전 데이터 정렬
             QuestionDto questionDto = new ModelMapper().map(questionEntity, QuestionDto.class);
