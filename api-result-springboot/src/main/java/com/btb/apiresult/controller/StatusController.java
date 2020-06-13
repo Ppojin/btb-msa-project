@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("")
-public class StatusController {
+public class wStatusController {
     private Environment env;
     @Autowired
     public StatusController(Environment env) {
