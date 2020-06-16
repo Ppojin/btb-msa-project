@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {signup} from 'shared/reducers/entities/user.reducer.js'
+import {signup} from 'shared/reducers/reducers/UserReducer.js'
 import { useDispatch } from 'react-redux';
 
 const SignupValForm =(callback, validate) =>{

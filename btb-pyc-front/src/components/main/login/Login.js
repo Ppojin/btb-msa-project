@@ -1,5 +1,5 @@
-import React,{useContext} from 'react';
-import {useStore, useSelector} from 'react-redux';
+import React from 'react';
+import {useSelector} from 'react-redux';
 
 //import @material-ui/
 import Avatar from '@material-ui/core/Avatar';
@@ -18,50 +18,21 @@ import {login} from '../../../assets/jss/components/main/login.js';
 import Copyright from '../../utils/Footer/Copyright';
 import LoginValForm from './LoginValForm';
 import {loginValidation} from '../../utils/others/ValidationCheck.js';
-import { Redirect, useHistory } from 'react-router';
 
 
 export default function LogIn() {
-  const storedata = useSelector(state => state.user);
-  const logged = storedata.isLogged;
-  const token = storedata.UserInfo.token;
-  const customerpk = storedata.UserInfo.customerpk;
+  const userstore = useSelector(state => state.user);
+  const logged = userstore.isLogged;
+  const token = userstore.UserInfo.token;
+  const customerpk = userstore.UserInfo.customerpk;
   const classes = login();
   const {
     values,
     loginValErrors,
     loginhandleChange,
     loginhandleSubmit,
-  } = LoginValForm(logindatacheck,loginValidation)
-
-  function logindatacheck() {
-
-    console.log("logged :",logged)
-    console.log("token : ",token)
-    console.log("pk: ",customerpk)
-
-    if(logged === true){
-      localStorage.setItem(
-          "userInfo",
-          JSON.stringify({
-              customerpk : customerpk,
-              token : token,
-              // isLogin : true
-          } 
-      ))}
-
-    // return function(){
-    //   if(logged === true){
-    //     localStorage.setItem(
-    //         "userInfo",
-    //         JSON.stringify({
-    //             customerpk : customerpk,
-    //             token : token,
-    //             // isLogin : true
-    //         } 
-    //     ))}
-    //   }
-    }
+  } = LoginValForm(loginValidation)
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -126,7 +97,7 @@ export default function LogIn() {
                   </a>
                 </Grid> */}
                 <Grid item>
-                  <a href="/signup"  variant="body2">
+                  <a href="/main/signup"  variant="body2">
                     계정이 없으신가요? 회원가입 하세요!
                   </a>
                 </Grid>

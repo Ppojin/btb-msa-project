@@ -10,6 +10,8 @@ import clsx from 'clsx';
 import usertemplate from '../assets/jss/layouts/usertemplate.js'
 import userDashboardStyle from '../assets/jss/components/styles/userDashboardStyle.js';
 //import @material-ui/
+import { fetchData } from '../shared/reducers/reducers/MyprofileReducer';
+
 import { List } from '@material-ui/core';
 import { Divider } from '@material-ui/core';
 import { Drawer } from '@material-ui/core';
@@ -97,6 +99,7 @@ export default function Stuheader(){
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
     // initialize and destroy the PerfectScrollbar plugin
     const getRoute =() =>{
         return window.location.pathname !== "/user/maps"

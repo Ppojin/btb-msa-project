@@ -1,0 +1,33 @@
+.BTBheader{
+    height: 14px;
+    background-color: black;
+    width: 100vw;
+    line-height: 10px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.BTBheader-logo{
+    height: 2rem;
+    background-color: white;
+    width: 10vw;
+    line-height: 2rem;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.BTBheader-items{
+    height: 2rem;
+    background-color: whitesmoke;
+    width: 1vw;
+    line-height: 2rem;
+    /* color: white; */
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    top: 10%;
+    left:20%;
+    
+}

@@ -9,9 +9,14 @@ import CardHeader from 'components/utils/Card/CardHeader.js'
 import CardBody from 'components/utils/Card/CardBody.js';
 //css style
 import userExamResultListStyle from 'assets/jss/components/styles/userExamTableStyle.js'
+import { useSelector, useDispatch } from 'react-redux';
 
-export default function userExamResultList (){
+export default function UserExamResultList (){
     const classes = userExamResultListStyle();
+    const examResultList = useSelector(state=>state.examResult)
+    const dispatch = useDispatch();
+    
+
     return (
         <GridContainer>
             <GridItem xs={12} sm={12} md={12}>

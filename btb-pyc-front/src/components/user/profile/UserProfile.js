@@ -2,9 +2,9 @@ import React from "react";
 import {useDispatch, useSelector} from 'react-redux';
 // @material-ui/core components
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from '@material-ui/core/MenuItem';
+
 // core components
-import {fetchData} from 'shared/reducers/entities/Myprofile.reducer.js'
+import {fetchData} from 'shared/reducers/reducers/MyprofileReducer.js'
 import GridItem from "../../utils/Grid/GridItem.js";
 import GridContainer from "../../utils/Grid/GridContainer.js";
 import UserInput from "./UserInput.js";
@@ -19,56 +19,81 @@ import avatar from "../../../assets/img/testAvatarImg.jpg";
 
 //css
 import {userprofileStyle} from '../../../assets/jss/components/user/profile.js'
-import { Select } from '@material-ui/core';
-
-
 
 
 export default function UserProfile() {
-    const userData = useSelector(state=>state.profileData);
-    const isfetched = userData.isFetched;
-    const userName = userData.userData.name;
-    const classes = userprofileStyle();
-    const dispatch=useDispatch();
+    // const [state, testdispatch] =useReducer(rootReducer,initialSate)
+
     const pk = localStorage.getItem("userInfo")
     const pk_customerpk = JSON.parse(pk).customerpk
     const pk_token = JSON.parse(pk).token
+    // dispatch(fetchData(pk_customerpk, pk_token))
+    const {isfetched,name, email, phone} = useSelector(state=>({
+        isfetched:state.isFetched,
+        name:state.Myprofile.userData.name,
+        email:state.Myprofile.userData.email,
+        phone:state.Myprofile.userData.phone,
+    }),[])
+    const classes = userprofileStyle();
+    const dispatch = useDispatch();
+    
     const userDataTest = (e)=>{
-        if(e)e.preventDefault();
-        console.log("userData : ",userData)
-        console.log("isfetched : ",isfetched)
-        console.log("userName : ",userName )
-        console.log("pk : ",pk)
-        console.log("pk.customerpk : ",pk_customerpk)
-        console.log("pk.token : ",pk_token)
-        dispatch(fetchData(pk_customerpk, pk_token))
-    }
+    if(e)e.preventDefault();
+    console.log("pk_customer : ",pk_customerpk)
+    console.log("pk_token : ",pk_token)
+    // fetchData(pk_customerpk, pk_token)
+    dispatch(fetchData(pk_customerpk, pk_token))
+    // console.log("fetchData : ", fetchData(pk_customerpk, pk_token))
+    // console.log("dispatch : ",dispatch(fetchData(pk_customerpk, pk_token))) 
+}
     return (
         <div>
             <GridContainer>
                 <GridItem xs={12} sm={12} md={8}>
+                
                     <Card>
                         <CardHeader color="primary">
                             <h4 className={classes.cardTitleWhite}>My profile</h4>
                             <p className={classes.cardCategoryWhite}>Complete your profile</p>
+                            
                         </CardHeader>
                         <CardBody>
                             <GridContainer>
-                                
-                                <div><button onClick={userDataTest}>유저 정보 확인 : </button></div>
-                
-                                <GridItem xs={12} sm={4} md={4}>
-                                    <div>username</div>
+                                <GridItem xs={12} sm={12} md={12}>
+                                <button onClick={userDataTest}>내 정보 검색 </button>
+                                        <CardHeader>
+                                            <h4 >Name : {name}</h4>
+                                        </CardHeader>
+                                        <hr/>
+                                        <CardHeader>
+                                            <h4 >email : {email}</h4>
+                                        </CardHeader>
+                                        <hr/>
+                                        <CardHeader>
+                                            <h4 >phone : {phone}</h4>
+                                        </CardHeader>
+                                        <hr/>
+                                    {/* <Card>
+                                        <CardHeader colo="brown">
+                                            <h4 className={classes.cardTitleBrown}>Name</h4>
+                                        </CardHeader>
+                                        
+                                        <CardBody>
+                                            <GridContainer>
+                                                
+                                            </GridContainer>
+                                        </CardBody>
+                                    </Card> */}
                                     
-                                    <UserInput
+                                    {/* <UserInput
                                         labelText="Username"
                                         id="username"
                                         formControlProps={{
                                             fullWidth: true
                                         }}
-                                    />
+                                    /> */}
                                 </GridItem>
-                                <GridItem xs={12} sm={8} md={8}>
+                                {/* <GridItem xs={12} sm={8} md={8}>
                                     <UserInput
                                         labelText="Email address"
                                         id="email-address"
@@ -76,9 +101,9 @@ export default function UserProfile() {
                                             fullWidth: true
                                         }}
                                     />
-                                </GridItem>
+                                </GridItem> */}
                             </GridContainer>
-                            <GridContainer>
+                            {/* <GridContainer>
                                 <GridItem xs={12} sm={12} md={12}>
                                     <UserInput
                                         labelText="01x-xxxx-xxxx"
@@ -88,7 +113,7 @@ export default function UserProfile() {
                                         }}
                                     />
                                 </GridItem>
-                            </GridContainer>
+                            </GridContainer> */}
                             <br/>
                             <GridContainer>
                                 <GridItem xs={12} sm={12} md={12}>
@@ -121,7 +146,7 @@ export default function UserProfile() {
                         </CardAvatar>
                         <CardBody profile>
                             <h6 className={classes.cardCategory}>Your AVATAR</h6>
-                            <h4 className={classes.cardTitle}>`username`님</h4>
+                            <h4 className={classes.cardTitle}>{name}님</h4>
                             <p className={classes.description}>
                                 My avatar description is here
                             </p>

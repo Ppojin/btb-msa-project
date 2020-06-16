@@ -9,7 +9,7 @@ import {
     dangerColor,
     whiteColor,
     grayColor
-} from "../../jssMain.js";
+} from "assets/jss/jssMain.js";
 
 const navbarSytle = () => ({
     appBar: {

@@ -4,10 +4,13 @@ import Button from '@material-ui/core/Button';
 //core component
 import MainPage from '../components/utils/Card/OutlinedCard.js'
 import LogIn from '../components/main/login/Login.js';
+import LoginPage from "components/main/login/LoginPage.js"
 import SignUp from '../components/main/signup/SignUp.js';
 import NotFound from '../components/utils/others/Errorpage.js';
+import Copyright from '../components/utils/Footer/Copyright';
 //css
 import '../assets/css/Maintemplate.css';
+
 
 const MenuItem =({active,children, to})=>(
     <Link to={to} className="main-menu-item">
@@ -36,11 +39,14 @@ const MainTemplate = () => {
                 >회원 가입
                 </MenuItem>
             </div>
+            <div>
+                {Copyright}
+            </div>
             <Switch>
                 <Route exact path="/main/home" component={MainPage}/>
                 <Route path="/main/login" component={LogIn} />
                 <Route path="/main/signup" component={SignUp} />
-                <Redirect from="/" to="/main/home"/>
+                {/* <Redirect from="/" to="/main/home"/> */}
                 <Route component={NotFound} />
             </Switch>
             

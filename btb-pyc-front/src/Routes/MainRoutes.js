@@ -2,6 +2,7 @@
 
 //import  corecomponent/views for Main layout
 import Login from '../components/main/login/Login.js'
+import LoginPage from 'components/main/login/LoginPage.js'
 import Signup from '../components/main/signup/SignUp.js'
 import Mainpage from '../components/utils/Card/OutlinedCard.js'
 
@@ -9,7 +10,7 @@ const mainRoutes = [
     {
         path: "/login",
         name: "login",
-        component : Login,
+        component : LoginPage,
         layout:"/main"
     },
     {

@@ -6,7 +6,7 @@ import {
     createDispatchHook,
     createSelectorHook,
 } from 'react-redux'
-import rootReducer from './shared/reducers';
+import rootReducer from './shared/reducers/store';
 import { createStore, applyMiddleware,bindActionCreators, } from 'redux';
 import {createLogger} from 'redux-logger';
 import ReduxThunk from 'redux-thunk';

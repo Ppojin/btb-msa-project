@@ -35,12 +35,12 @@ export default function ExamTable(props) {
                     </TableHead>
                 ) : null}
                 <TableBody>
-                    {tableData.map((prop, key) => {
+                    {tableData.map((prop, {pk}) => {
                         return (
-                            <TableRow key={key} className={classes.tableBodyRow}>
+                            <TableRow key={pk} className={classes.tableBodyRow}>
                                 {prop.map((prop, key) => {
                                     return (
-                                        <TableCell className={classes.tableCell} key={key}>
+                                        <TableCell className={classes.tableCell} key={pk}>
                                             {prop}
                                         </TableCell>
                                     );

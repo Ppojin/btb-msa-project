@@ -5,7 +5,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 
 // core components
-import cardFooterStyle from "../../../assets/jss/components/styles/cardFooterStyle.js";
+import cardFooterStyle from "assets/jss/components/styles/cardFooterStyle.js";
 
 
 

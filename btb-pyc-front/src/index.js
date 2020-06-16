@@ -6,7 +6,7 @@ import {Provider, useStore} from 'react-redux';
 
 //core component
 import Routes from 'Routes/Routes.js'
-import rootReducer from './shared/reducers/index.js';
+import rootReducer from './shared/reducers/store/index.js';
 import setupAxiosInterceptors from './config/axios-interceptor.js'
 
 import {createLogger} from 'redux-logger';
@@ -26,9 +26,9 @@ const indexContext = createContext();
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <indexContext.Provider value={store}>
+      {/* <indexContext.Provider value={store}> */}
         <Routes/>
-      </indexContext.Provider>
+      {/* </indexContext.Provider> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

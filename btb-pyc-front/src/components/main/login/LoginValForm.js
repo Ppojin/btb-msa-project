@@ -1,21 +1,25 @@
 import {useState, useEffect} from 'react';
 import {useDispatch,useSelector } from 'react-redux';
-import {login, } from 'shared/reducers/entities/user.reducer.js'
+import {login, } from 'shared/reducers/reducers/UserReducer.js'
+import {fetchData} from 'shared/reducers/reducers/MyprofileReducer.js'
 
-
-const LoginValForm =(callback, validate) =>{
+const LoginValForm =(validate) =>{
     const [values, setValues] = useState({});
     const [loginValErrors, setLoginErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
-    // const {entity, headers} = useSelector(user=>({entity: user.entity, headers:user.headers}),[])
+    const pk = localStorage.getItem("userInfo")
+    const pk_customerpk = JSON.parse(pk).customerpk
+    const pk_token = JSON.parse(pk).token
     const dispatch = useDispatch();
-    // const stateUserData = useSelector((state)=>state.user);
-    // const logged = stateUserData.UserInfo.logged
-    // const customerpk = stateUserData.UserInfo.customerpk;
-    // const token = stateUserData.UserInfo.token;
+    const {isLogged, token, customerpk} = useSelector(state=> ({
+        isLogged : state.user.isLogged,
+        token : state.user.UserInfo.token,
+        customerpk : state.user.UserInfo.customerpk,
+    }))
+        
     useEffect(
-        (()=> {if(Object.keys(loginValErrors).length === 0 && isSubmitting){ callback() } }), 
-        [callback, isSubmitting, loginValErrors]
+        (()=> {if(Object.keys(loginValErrors).length === 0 && isSubmitting){} }), 
+        [isSubmitting, loginValErrors]
     );
 
     const loginhandleSubmit = (event) => {
@@ -28,21 +32,24 @@ const LoginValForm =(callback, validate) =>{
         // console.log("headers : ",{headers}) // undefined
 
         // dispatch action(entity)
-        dispatch(login(values))
-        // console.log("loginvalform loginhandleSubmit dispatch : "+dispatch(login(values))) // [object Promis]
-        //login success ? localStroage.setItem : return false
-        // if(logged === true){
-        //     localStorage.setItem(
-        //         "userInfo",
-        //         JSON.stringify({
-        //             customerpk : customerpk,
-        //             token : token
-        //         }.then(this.props.history.push('/user/myprofile'))
-        //     ))
-        // }
-        // console.log("data - action.type : "+userReducer) // undefined
-        // console.log("data - action.payload.headers : "+action.payload.headers)
-        // console.log("dispatch : ", dispatch(login(values))) // Promis:{}
+        dispatch(login(values)).then(
+            ()=> {if(isLogged ===true){
+                localStorage.setItem(
+                    "userInfo",
+                    JSON.stringify({
+                        customerpk: customerpk,
+                        token: token,
+                    })
+                )
+            }}
+        ).then(
+            ()=> {
+                return(
+                    console.log("fetchdata : ", JSON.parse(localStorage.getItem("userInfo")))
+                )
+            }
+        )
+
         setIsSubmitting(true)
     };
 
