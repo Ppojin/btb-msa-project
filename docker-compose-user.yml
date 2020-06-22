@@ -2,12 +2,12 @@ version: '3.1'
 
 services:    
     api_user:
-        build: ./api-user-springboot
+        image: ppojin/user
         ports: 
             - 10000:10000
         networks: 
             - "msa"
-        restart: unless-stopped
+        # restart: unless-stopped
         environment: 
             - spring.rabbitmq.host=rabbitmq
             - spring.cloud.config.uri=http://config:8012

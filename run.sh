@@ -1,10 +1,15 @@
 #!/bin/bash
 
-docker-compose -f docker-compose-config.yml up
+docker-compose -f docker-compose-config.yml up -d
 sleep 10s
-docker-compose -f docker-compose-msaback.yml up
+docker-compose -f docker-compose-msaback.yml up -d
 sleep 10s
-docker-compose -f docker-compose-api.yml up
+docker-compose -f docker-compose-api.yml up -d
+# docker-compose -f docker-compose-user.yml up -d
+# sleep 30s
+# docker-compose -f docker-compose-qabank.yml up -d
+# sleep 30s
+# docker-compose -f docker-compose-result.yml up -d
 
 # #network
 # docker network create my-net

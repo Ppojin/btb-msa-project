@@ -39,3 +39,5 @@ mvn clean compile package -DskipTests
 ## build
 docker build -t ppojin/result .
 docker push ppojin/result
+
+../run.sh

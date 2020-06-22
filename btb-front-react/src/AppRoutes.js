@@ -13,7 +13,7 @@ const AppRoutes = () => {
             <Switch>
                 <Route path="/customer" component={Customer}/>
                 <Route path="/exam" component={Exam}/>
-                {/* <Route path="/" component={} /> */}
+                {/* <Route path="/" exact component={Login} /> */}
             </Switch>
         </div>
     )

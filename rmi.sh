@@ -1,10 +1,10 @@
 #!/bin/bash
 # docker rmi rabbitmq
 # docker rmi zipkin
-docker rmi config
-docker rmi eureka
-docker rmi zuul
-docker rmi user
-docker rmi qabank
-docker rmi exam
-docker rmi result
+docker rmi ppojin/config
+docker rmi ppojin/eureka
+docker rmi ppojin/zuul
+docker rmi ppojin/user
+docker rmi ppojin/qabank
+docker rmi ppojin/exam
+docker rmi ppojin/result

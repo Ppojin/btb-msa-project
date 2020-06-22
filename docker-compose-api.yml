@@ -7,7 +7,7 @@ services:
             - 10000:10000
         networks: 
             - "msa"
-        restart: unless-stopped
+        # restart: unless-stopped
         environment: 
             - spring.rabbitmq.host=rabbitmq
             - spring.cloud.config.uri=http://config:8012
@@ -22,7 +22,7 @@ services:
             - 20000:20000
         networks: 
             - "msa"
-        restart: unless-stopped
+        # restart: unless-stopped
         environment: 
             - spring.rabbitmq.host=rabbitmq
             - spring.cloud.config.uri=http://config:8012
@@ -30,6 +30,8 @@ services:
             - server.port=20000
             - spring.cloud.config.name=docker
             - spring.zipkin.base-url=zipkin
+        depends_on: 
+            - api_user
 
     api_result:
         image: ppojin/result
@@ -37,7 +39,7 @@ services:
             - 40000:40000
         networks: 
             - "msa"
-        restart: unless-stopped
+        # restart: unless-stopped
         environment: 
             - spring.rabbitmq.host=rabbitmq
             - spring.cloud.config.uri=http://config:8012
@@ -45,5 +47,7 @@ services:
             - server.port=40000
             - spring.cloud.config.name=docker
             - spring.zipkin.base-url=zipkin
+        depends_on: 
+            - api_qabank
 networks: 
     msa:
