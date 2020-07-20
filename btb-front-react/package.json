@@ -12,7 +12,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "history": "^5.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "nouislider": "^14.5.0",
     "react": "^16.13.1",
     "react-datetime": "^2.16.3",
